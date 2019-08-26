@@ -10,8 +10,6 @@
         <caption>result</caption>
         <tr>
             <table border="1" style="font-size: larger">
-
-
                 <?php
                 $x = $_GET['X'];
                 echo "<th>X:</th><td>$x</td>";
@@ -24,11 +22,19 @@
                         $rArray[] = substr($key, 1);
                     }
                 }
-                $result = 1 > 2;
 
                 function check($x, $y, $r)
                 {
-                    return "true";
+                    if ($x<0 and $y<0){
+                        return false;
+                    }elseif ($x>=0 and $y>=0){
+                        if ($x<=$r and $y<=$r)
+                            return true;
+                    }elseif ($x<=0 and $y>=0)
+                        return pow($x, 2) + pow($y, 2) <= pow($r, 2);
+                    elseif ($x<=((int)$r)/2 and $y>=$r)
+                        return true;
+                    return false;
                 }
 
                 foreach ($rArray as $rIndex => $r) {
@@ -46,7 +52,7 @@
                         if ($rIndex === 0) {
                             echo "<tr><th>$y</th>";
                         }
-                        echo "<td>" . check($x, $y, $r) . "</td>";
+                        echo "<td>" . (check($x, $y, $r)?'true':'false') . "</td>";
                         if ($rIndex === count($rArray) - 1) {
                             echo "</tr>";
                         }
