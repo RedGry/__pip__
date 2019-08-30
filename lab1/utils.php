@@ -44,7 +44,7 @@
         return false;
     }
 
-    function generetResultTable($x, $yArray, $rArray, $tableName = ""){
+    function generateResultTable($x, $yArray, $rArray, $tableName = ""){
         global $tableHeader, $tableButtom;
         $table = str_replace('[x]', $x, $tableHeader);
         $table = str_replace('[n]', $tableName, $table);
