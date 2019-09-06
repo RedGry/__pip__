@@ -1,87 +1,109 @@
 <?php
-    $pageHeader = '<html>
-                    <head>
-	                    <title> %20RESULT</title>
-                    </head>
-                    <body vlink="#000000" text="#ff0000" link="#000000" bgcolor="#0000ff" background="http://wwwww.jodi.org/100/hqx/00/45stt.gif" alink="#ff0000">
-	                    <font xface="Geneva" size="4">
-		                    <kbd>';
+$areaImg = '<img id="areas-img" style="" src="static/areas.png">';
 
-    $tableHeader = '<b><pre><dir>
-                        <table bgcolor="#000000">
-                            <caption style="color: blue; background-color: deeppink; font-size: larger">
-                                %R35Ul7% #[n]
-                            </caption>
-                            <tbody><font size="2" color="#ffffff"><pre><b><xblink>
-                                <th>X:</th><td>[x]</td>';
+function resultTableWrapper($x, $html){
+    return '<pre>
+                <table bgcolor="#000000">
+                    <caption style="color: blue; background-color: deeppink; font-size: larger">
+                        %R35Ul7%
+                    </caption>
+                    <tbody>
+                        <th>X:</th><td>' . $x . '</td>'
+                        . $html .
+                    '</tbody>
+                </table>
+            </pre>';
+}
 
-    $tableButtom = '</xblink></b></pre></font></tbody></table></dir></pre></b></kbd>';
-    $pageButtom = '</font></body></html>';
+function toСenter($html){
+    return '<table  width="100%">
+                <tbody>
+                    <tr>
+                        <td width="20%"></td>
+                        <td width="60%" style="padding: 7% 0%">'
+                            . $html .
+                        '</td>
+                        <td width="20%"></td>
+                    </tr>
+                </tbody>
+            </table>';
+}
 
-    function parseParameters($get){
-        $yArray = array();
-        $rArray = array();
-        foreach ($get as $key => $value) {
-            if (substr($key, 0, 1) === "y" && $value === "on") {
-                $yArray[] = substr($key, 1);
-            } elseif (substr($key, 0, 1) === "r" && $value === "on") {
-                $rArray[] = substr($key, 1);
-            }
+function bodyWrapper($html){
+    return '<html>
+                <head>
+                    <title> %20RESULT</title>
+                </head>
+                <body style="max-width: 420px; overflow: hidden; max-height: 320px; margin: 0px;" text="#ff0000" bgcolor="#0000ff" background="static/strange-bg.gif">'
+                    . $html .
+                '</body>
+            </html>';
+}
+
+function parseParameters($get){
+    $yArray = array();
+    $rArray = array();
+    foreach ($get as $key => $value) {
+        if (substr($key, 0, 1) === "y" && $value === "on") {
+            $yArray[] = substr($key, 1);
+        } elseif (substr($key, 0, 1) === "r" && $value === "on") {
+            $rArray[] = substr($key, 1);
         }
-        return [$yArray, $rArray];
     }
+    return [$yArray, $rArray];
+}
 
-    function check($x, $y, $r){
-        if ($x<0 and $y<0){
-            return false;
-        }elseif ($x>=0 and $y>=0){
-            if ($x<=$r and $y<=$r)
-                return true;
-        }elseif ($x<=0 and $y>=0)
-            return pow($x, 2) + pow($y, 2) <= pow($r, 2);
-        elseif ($x<=((int)$r)/2 and $y>=$r)
-            return true;
+function check($x, $y, $r){
+    if ($x < 0 and $y < 0) {
         return false;
-    }
+    } elseif ($x >= 0 and $y >= 0) {
+        if ($x <= $r and $y <= $r)
+            return true;
+    } elseif ($x <= 0 and $y >= 0)
+        return pow($x, 2) + pow($y, 2) <= pow($r, 2);
+    elseif ($x <= ((int)$r) / 2 and $y >= $r)
+        return true;
+    return false;
+}
 
-    function generateResultTable($x, $yArray, $rArray, $tableName = ""){
-        global $tableHeader, $tableButtom;
-        $table = str_replace('[x]', $x, $tableHeader);
-        $table = str_replace('[n]', $tableName, $table);
+function generateResultTable($x, $yArray, $rArray){
+    $tmpTable = '';
+    foreach ($rArray as $rIndex => $r) {
+        if ($rIndex === 0) {
+            $tmpTable = $tmpTable . "<tr><th>Y\R</th>";
+        }
+        $tmpTable = $tmpTable . "<th>$r</th>";
+        if ($rIndex === count($rArray) - 1) {
+            $tmpTable = $tmpTable . "</tr>";
+        }
+    }
+    foreach ($yArray as $yIndex => $y) {
         foreach ($rArray as $rIndex => $r) {
             if ($rIndex === 0) {
-                $table = $table . "<tr><th>Y\R</th>";
+                $tmpTable = $tmpTable . "<tr><th>$y</th>";
             }
-            $table = $table . "<th>$r</th>";
+            $tmpTable = $tmpTable . "<td>" . (check($x, $y, $r) ? 'true' : 'false') . "</td>";
             if ($rIndex === count($rArray) - 1) {
-                $table = $table . "</tr>";
+                $tmpTable = $tmpTable . "</tr>";
             }
         }
-        foreach ($yArray as $yIndex => $y) {
-            foreach ($rArray as $rIndex => $r) {
-                if ($rIndex === 0) {
-                    $table = $table . "<tr><th>$y</th>";
-                }
-                $table = $table . "<td>" . (check($x, $y, $r)?'true':'false') . "</td>";
-                if ($rIndex === count($rArray) - 1) {
-                    $table = $table . "</tr>";
-                }
-            }
-        }
-        return $table . $tableButtom;
     }
+    return $table = resultTableWrapper($x, $tmpTable);
+}
 
-    class Point{
-        var $x;
-        var $y;
-        var $r;
-        var $is_in_area;
-        function Point($x, $y, $r){
-            $this->x = $x;
-            $this->y = $y;
-            $this->r = $r;
-            $this->is_in_area = check($x, $y, $r);
-        }
-    }
-
+//class Point
+//{
+//    var $x;
+//    var $y;
+//    var $r;
+//    var $is_in_area;
+//
+//    function Point($x, $y, $r)
+//    {
+//        $this->x = $x;
+//        $this->y = $y;
+//        $this->r = $r;
+//        $this->is_in_area = check($x, $y, $r);
+//    }
+//}
 ?>

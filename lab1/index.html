@@ -5,10 +5,11 @@
     <title>pip-1</title>
     <script src="static/script.js"></script>
 </head>
-<body onload="onPageLoad()" style="background-color: darkslateblue; background-image: url('http://wwwwwwwww.jodi.org/100cc/havoc/lem.gif'); color: aqua">
+<body style="background-color: darkslateblue; background-image: url('static/mario.gif'); color: aqua">
 <table width="100%">
     <tr>
-	    <th style="text-align: left; padding-left: 2%; background-color: black">Agababyan Karlen<br>Group P3202<br>202000<br><a href="http://github.com/SunnyCapt/__pip__" style="color: yellow">Source</a></th>
+        <th style="text-align: left; padding-left: 2%; background-color: black">Agababyan Karlen<br>Group P3202<br>202000<br><a
+                href="http://github.com/SunnyCapt/__pip__" style="color: yellow">Source</a></th>
     </tr>
     <tr>
         <td width="20%"></td>
@@ -17,40 +18,77 @@
                 <tr>
                     <td width="20%"></td>
                     <td width="60%">
-                        <form method="get" action="check-point.php" onsubmit="onSubmit()" style="text-align: center; margin-bottom: 10%;">
+                        <form target="result" method="get" action="check-point.php" onsubmit="onSubmit()" style="text-align: center; margin-bottom: 10%;">
                             <table style="background-color: black">
                                 <tr>
                                     <td width="30%"></td>
-                                    <td id="main" width="30%" style="visibility: hidden">
-                                        <p>X: <br><input id="x-input" autocomplete="off" oninput="onEditX()" style="text-align: center; width: 175px;" type="text" name="X"></p>
-                                        <table width="420px" border="1" style="">
+                                    <td id="main" width="30%">
+                                        <p>
+                                            X: <br>
+                                            <input id="x-input" autocomplete="off" oninput="onEditX()" style="text-align: center; width: 175px;" type="text" name="X">
+                                        </p>
+                                        <table style="" width="420px" border="1">
+                                            <tbody>
                                             <tr>
                                                 <td>
-                                                    <table height="100%" width="100%" border="1">
+                                                    <table width="100%" height="100%" border="1">
                                                         <tbody id="y-table">
-                                                            <tr>
-                                                                <th></th>
-                                                                <th>Y:</th>
-                                                                    <th></th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Y:</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>-4<input type="checkbox" name="y-4"></td>
+                                                            <td>-3<input type="checkbox" name="y-3"></td>
+                                                            <td>-2<input type="checkbox" name="y-2"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>-1<input type="checkbox" name="y-1"></td>
+                                                            <td>0<input type="checkbox" name="y0"></td>
+                                                            <td>1<input type="checkbox" name="y1"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2<input type="checkbox" name="y2"></td>
+                                                            <td>3<input type="checkbox" name="y3"></td>
+                                                            <td>4<input type="checkbox" name="y4"></td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </td>
                                                 <td height="100%">
-                                                    <table height="100%" width="100%" border="1">
+                                                    <table width="100%" height="100%" border="1">
                                                         <tbody id="r-table">
-                                                            <tr>
-                                                                <th>R:</th>
-                                                            </tr>
+                                                        <tr>
+                                                            <th>R:</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1<input type="checkbox" name="r1"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1.5<input type="checkbox" name="r1.5"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2<input type="checkbox" name="r2"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2.5<input type="checkbox" name="r2.5"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3<input type="checkbox" name="r3"></td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </td>
                                             </tr>
-                                        </table><br>
+                                            </tbody>
+                                        </table>
+                                        <br>
                                         <input style="text-align: center; font-size: medium" type="submit" value="send">
-                                        <br>
-                                        <br>
-                                        <img style="margin-bottom: 5%" src="static/areas.png">
+                                        <br><br>
+                                        <iframe id="result-iframe" name="result" src="check-point.php?needAreasImage=true" style="width: 420px; height: 320px; margin-bottom: 5%;">
+                                            *here is the response*
+                                        </iframe>
                                     </td>
                                     <td width="30%"></td>
                                 </tr>

@@ -1,17 +1,18 @@
 <?php
-    include 'utils.php';
-    echo $pageHeader;
+include 'utils.php';
 
+$needAreaImage = $_GET['needAreasImage'];
+
+if ($needAreaImage and $needAreaImage == 'true')
+    echo bodyWrapper($areaImg);
+else {
     $parameters = parseParameters($_GET);
     $x = $_GET["X"];
     $yArray = $parameters[0];
     $rArray = $parameters[1];
 
-    //there will be a generation of several tables
-    echo generateResultTable($x, $yArray, $rArray, '1');
-    //...
-    echo generateResultTable($x, $yArray, $rArray, 'n');
-
-    echo $pageButtom;
+    $table = generateResultTable($x, $yArray, $rArray, '1');
+    echo bodyWrapper(toСenter($table));
+}
 ?>
 
