@@ -71,4 +71,17 @@
         return $table . $tableButtom;
     }
 
+    class Point{
+        var $x;
+        var $y;
+        var $r;
+        var $is_in_area;
+        function Point($x, $y, $r){
+            $this->x = $x;
+            $this->y = $y;
+            $this->r = $r;
+            $this->is_in_area = check($x, $y, $r);
+        }
+    }
+
 ?>
