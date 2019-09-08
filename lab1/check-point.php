@@ -11,8 +11,8 @@ else {
     $yArray = $parameters[0];
     $rArray = $parameters[1];
 
-    $table = generateResultTable($x, $yArray, $rArray, '1');
-    echo bodyWrapper(toСenter($table));
+    $table = generateResultTable($x, $yArray, $rArray);
+    echo bodyWrapper(toСenter($table, '', $closeButton));
 }
 ?>
 

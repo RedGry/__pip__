@@ -1,5 +1,6 @@
 <?php
 $areaImg = '<img id="areas-img" style="" src="static/areas.png">';
+$closeButton = '<button onclick="resetResult()" style="margin-bottom: 390%;margin-left: 30%;">reset</button>';
 
 function resultTableWrapper($x, $html){
     return '<pre>
@@ -15,15 +16,15 @@ function resultTableWrapper($x, $html){
             </pre>';
 }
 
-function toСenter($html){
+function toСenter($html, $leftCellHtml='', $rightCellHtml=''){
     return '<table  width="100%">
                 <tbody>
                     <tr>
-                        <td width="20%"></td>
+                        <td width="20%">' . $leftCellHtml . '</td>
                         <td width="60%" style="padding: 7% 0%">'
                             . $html .
                         '</td>
-                        <td width="20%"></td>
+                        <td width="20%">' . $rightCellHtml . '</td>
                     </tr>
                 </tbody>
             </table>';
@@ -33,8 +34,9 @@ function bodyWrapper($html){
     return '<html>
                 <head>
                     <title> %20RESULT</title>
+                    <script src="static/script.js"></script>
                 </head>
-                <body style="max-width: 420px; overflow: hidden; max-height: 320px; margin: 0px;" text="#ff0000" bgcolor="#0000ff" background="static/strange-bg.gif">'
+                <body style="max-width: 420px; overflow: hidden; max-height: 320px; margin: 0px;" text="#ff0000" background="static/strange-bg.gif">'
                     . $html .
                 '</body>
             </html>';

@@ -66,7 +66,7 @@ function onEditX() {
         xInput.style.backgroundColor = "white";
 }
 
-function onSubmit() {
+function onSubmitForm() {
     var xInput = document.getElementById("x-input");
     var yArray = Array.from(document.getElementById("y-table").children);
     var rArray = Array.from(document.getElementById("r-table").children);
@@ -78,4 +78,9 @@ function onSubmit() {
         alert("wrong parameters!");
     }
     return !err;
+}
+
+function resetResult() {
+    Array.from(document.body.children).forEach(function (node) {node.remove()});
+    document.body.innerHTML = '<img id="areas-img" style="" src="static/areas.png">';
 }
