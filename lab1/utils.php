@@ -93,6 +93,16 @@ function generateResultTable($x, $yArray, $rArray){
     return $table = resultTableWrapper($x, $tmpTable);
 }
 
+function checkParameters($get){
+    foreach ($get as $key => $value) {
+        if (substr($key, 0, 1) === "y" && $value === "on") {
+            $yArray[] = substr($key, 1);
+        } elseif (substr($key, 0, 1) === "r" && $value === "on") {
+            $rArray[] = substr($key, 1);
+        }
+    }
+}
+
 //class Point
 //{
 //    var $x;
