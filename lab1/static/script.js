@@ -23,6 +23,11 @@ function checkArrayValues(currentValues, correctValues) {
     return false;
 }
 
+function resetResult() {
+    Array.from(document.body.children).forEach(function (node){node.remove()});
+    document.body.innerHTML = '<img id="areas-img" style="" src="static/areas.png">';
+}
+
 function onEditX() {
     var xInput = document.getElementById("x-input");
     if (checkXValue(xInput))
