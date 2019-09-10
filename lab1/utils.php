@@ -21,7 +21,7 @@ function toСenter($html, $leftCellHtml='', $rightCellHtml=''){
                 <tbody>
                     <tr>
                         <td width="20%">' . $leftCellHtml . '</td>
-                        <td width="60%" style="padding: 7% 0%">'
+                        <td width="60%" style="padding: 7% 0%; text-align: center;">'
                             . $html .
                         '</td>
                         <td width="20%">' . $rightCellHtml . '</td>
@@ -30,13 +30,14 @@ function toСenter($html, $leftCellHtml='', $rightCellHtml=''){
             </table>';
 }
 
-function bodyWrapper($html){
+function bodyWrapper($html, $class){
     return '<html>
                 <head>
                     <title> %20RESULT</title>
+                    <link href="static/style.css" rel="stylesheet">
                     <script src="static/script.js"></script>
                 </head>
-                <body style="max-width: 420px; overflow: hidden; max-height: 320px; margin: 0px;" text="#ff0000" background="static/strange-bg.gif">'
+                <body class="' . $class . '" >'
                     . $html .
                 '</body>
             </html>';
@@ -56,16 +57,25 @@ function parseParameters($get){
 }
 
 function check($x, $y, $r){
+    $result = false;
     if ($x < 0 and $y < 0) {
-        return false;
+        $result = false;
     } elseif ($x >= 0 and $y >= 0) {
         if ($x <= $r and $y <= $r)
-            return true;
+            $result = true;
     } elseif ($x <= 0 and $y >= 0)
-        return pow($x, 2) + pow($y, 2) <= pow($r, 2);
+        $result = pow($x, 2) + pow($y, 2) <= pow($r, 2);
     elseif ($x <= ((int)$r) / 2 and $y >= $r)
-        return true;
-    return false;
+        $result = true;
+
+    $_SESSION['results'][] = array(
+        'x' => $x,
+        'y' => $y,
+        'r' => $r,
+        'result' => $result
+    );
+
+    return $result;
 }
 
 function generateResultTable($x, $yArray, $rArray){
@@ -93,8 +103,8 @@ function generateResultTable($x, $yArray, $rArray){
     return $table = resultTableWrapper($x, $tmpTable);
 }
 
-function checkParameters($get){
-    foreach ($get as $key => $value) {
+function checkParameters(){
+    foreach ($_GET as $key => $value) {
         if (substr($key, 0, 1) === "y" && $value === "on") {
             $yArray[] = substr($key, 1);
         } elseif (substr($key, 0, 1) === "r" && $value === "on") {
@@ -103,19 +113,29 @@ function checkParameters($get){
     }
 }
 
-//class Point
-//{
-//    var $x;
-//    var $y;
-//    var $r;
-//    var $is_in_area;
-//
-//    function Point($x, $y, $r)
-//    {
-//        $this->x = $x;
-//        $this->y = $y;
-//        $this->r = $r;
-//        $this->is_in_area = check($x, $y, $r);
-//    }
-//}
+function renderError($message) {
+    return bodyWrapper(toСenter($message), 'error-message');
+}
+
+function renderAreasImg() {
+    global $areaImg;
+    echo bodyWrapper($areaImg);
+}
+
+function renderResultPage() {
+    global $closeButton;
+
+    $parameters = parseParameters($_GET);
+    $x = $_GET["X"];
+    $yArray = $parameters[0];
+    $rArray = $parameters[1];
+
+    $table = generateResultTable($x, $yArray, $rArray);
+
+    echo bodyWrapper(toСenter($table, '', $closeButton), 'result-page');
+}
+
+function renderHistoryPage() {
+    echo 'NotImplemented';
+}
 ?>

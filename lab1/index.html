@@ -14,39 +14,21 @@
     </tr>
     <tr>
         <td width="20%" style="vertical-align: top; padding-top: 1%;">
-            <table width="100%" style="" >
-                <tbody>
-                <tr>
-                    <td width="20%"></td>
-                    <td width="25%">
-                        <iframe id="history-0-iframe" src="/check-point.php?needResultFromHistory=true&amp;resultIndexInHistory=0" name="result-0" style="width: 240px; border: 0px; height: 230px;">
-                            server crashed
-                        </iframe>
-                        <iframe id="history-1-iframe" src="/check-point.php?needResultFromHistory=true&amp;resultIndexInHistory=1" name="result-1" style="padding-top: 5%; border: 0px; width: 240px; height: 230px;">
-                            server crashed
-                        </iframe>
-                        <iframe id="history-2-iframe" src="/check-point.php?needResultFromHistory=true&amp;resultIndexInHistory=2" name="result-2" style="padding-top: 5%; border: 0px; width: 240px; height: 230px;">
-                            server crashed
-                        </iframe>
-                    </td>
-                    <td width="20%"></td>
-                </tr>
-                </tbody>
-            </table>
         </td>
         <td width="60%" style="padding-bottom: 5%;font-size: large">
             <table width="100%">
                 <tr>
                     <td width="20%"></td>
                     <td width="60%">
-                        <form target="result" method="get" action="check-point.php" onsubmit="onSubmitForm()" style="text-align: center; margin-bottom: 10%;">
-                            <table style="background-color: black">
-                                <tr>
-                                    <td width="30%"></td>
-                                    <td id="main" width="30%">
+                        <table width="100%" style="background-color: black">
+                            <tr>
+                                <td width="30%"></td>
+                                <td id="main" width="30%">
+                                    <form target="result" method="get" action="script.php" onsubmit="onSubmitForm()" style="text-align: center; margin-top: 10%;">
                                         <p>
                                             X: <br>
-                                            <input id="x-input" autocomplete="off" oninput="onEditX()" style="text-align: center; width: 175px;" type="text" name="X">
+                                            <input id="x-input" autocomplete="off" oninput="onEditX()"
+                                                   style="text-align: center; width: 175px;" type="text" name="X">
                                         </p>
                                         <table style="" width="420px" border="1">
                                             <tbody>
@@ -104,42 +86,23 @@
                                             </tr>
                                             </tbody>
                                         </table>
+                                        <input type="hidden" name="needResult" value="true">
                                         <br>
                                         <input style="text-align: center; font-size: medium" type="submit" value="send">
-                                        <br><br>
-                                        <iframe id="result-iframe" name="result" src="check-point.php?needAreasImage=true" style="border: 0px; background-image: url('static/strange-bg.gif'); width: 420px; height: 320px;">
-                                            server crashed
-                                        </iframe>
-                                    </td>
-                                    <td width="30%"></td>
-                                </tr>
-                            </table>
-                        </form>
+                                    </form>
+                                    <iframe id="result-iframe" name="result" src="script.php?needAreasImage=true" style="border: 0px; margin:3% 0%; background-image: url('static/strange-bg.gif'); width: 420px; height: 320px;">
+                                        server crashed
+                                    </iframe>
+                                </td>
+                                <td width="30%"></td>
+                            </tr>
+                        </table>
                     </td>
                     <td width="20%"></td>
                 </tr>
             </table>
         </td>
         <td width="20%" style="vertical-align: top; padding-top: 1%;">
-            <table width="100%" style="">
-                <tbody>
-                <tr>
-                    <td width="20%"></td>
-                    <td width="25%">
-                        <iframe id="history-3-iframe" src="/check-point.php?needResultFromHistory=true&amp;resultIndexInHistory=3" name="result-3" style="width: 240px; border: 0px; height: 230px;">
-                            server crashed
-                        </iframe>
-                        <iframe id="history-4-iframe" src="/check-point.php?needResultFromHistory=true&amp;resultIndexInHistory=4" name="result-4" style="padding-top: 5%; border: 0px;  width: 240px; height: 230px;">
-                            server crashed
-                        </iframe>
-                        <iframe id="history-5-iframe" src="/check-point.php?needResultFromHistory=true&amp;resultIndexInHistory=5" name="result-5" style="padding-top: 5%; border: 0px;  width: 240px; height: 230px;">
-                            server crashed
-                        </iframe>
-                    </td>
-                    <td width="20%"></td>
-                </tr>
-                </tbody>
-            </table>
         </td>
     </tr>
 </table>
