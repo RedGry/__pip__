@@ -66,6 +66,7 @@ function parseParameters(){
 }
 
 function check($x, $y, $r){
+    $startCalcTime = explode(' ', microtime());
     $result = false;
     if ($x < 0 and $y < 0) {
         $result = false;
@@ -77,11 +78,22 @@ function check($x, $y, $r){
     elseif ($x <= ((int)$r) / 2 and $y >= $r)
         $result = true;
 
+    $finishCalcTime = explode(' ', microtime());
+
+    $calcTimeSec = $finishCalcTime[1] - $startCalcTime[1];
+    $calcTimeMsec = $finishCalcTime[0] - $startCalcTime[0];
+
+    if ($calcTimeSec === 0)
+        $calcTime = $calcTimeMsec;
+    else
+        $calcTime = $calcTimeSec + $calcTimeMsec;
+
     $_SESSION['results'][] = array(
         'x' => $x,
         'y' => $y,
         'r' => $r,
-        'result' => $result
+        'result' => $result,
+        'calcTime' => $calcTime
     );
 
     return $result;
@@ -213,6 +225,16 @@ function renderResultPage(){
 }
 
 function renderHistoryPage(){
-    renderError('NotImplemented');
+    $history = $_SESSION['results'];
+    if (sizeof($history) > 10)
+        $history = array_slice($history, -10, 10);
+    $result = '';
+    foreach ($history as $point){
+        foreach ($point as $key => $value){
+            $result = $result . $key . ': ' . $value . ' | ';
+        }
+        $result = $result . '<br><br>';
+    }
+    renderError('NotImplemented<br>H1570RY<br><br>' . $result);
 }
 ?>
