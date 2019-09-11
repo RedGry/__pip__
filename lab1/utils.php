@@ -15,7 +15,7 @@ function console_log( $data ){
 function resultTableWrapper($x, $html){
     return '<pre>
                 <table bgcolor="#000000">
-                    <caption style="color: blue; background-color: deeppink; font-size: larger">
+                    <caption class="result">
                         %R35Ul7%
                     </caption>
                     <tbody>
@@ -30,11 +30,11 @@ function toСenter($html, $leftCellHtml = '', $rightCellHtml = ''){
     return '<table class="max-size">
                 <tbody>
                     <tr>
-                        <td width="20%">' . $leftCellHtml . '</td>
-                        <td width="60%" style="padding: 7% 0%; text-align: center;">'
+                        <td class="to-center-side-cell">' . $leftCellHtml . '</td>
+                        <td class="to-center-main-cell">'
                             . $html .
                         '</td>
-                        <td width="20%">' . $rightCellHtml . '</td>
+                        <td class="to-center-side-cell">' . $rightCellHtml . '</td>
                     </tr>
                 </tbody>
             </table>';
@@ -167,7 +167,7 @@ function isCorrectParameters(){
             $haveXValue = true;
         }
         else {
-            if ($key !== 'needResult' and $value !== 'true')
+            if ($key !== 'needResult' || $value !== 'true')
                 return array(
                     'result' => false,
                     'message' => 'unknown parameter name: ' . $key

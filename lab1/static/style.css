@@ -128,3 +128,19 @@ td.center-cell {
     width: 40%;
     text-align: right;
 }
+
+td.to-center-main-cell {
+    width: 60%;
+    padding: 7% 0;
+    text-align: center;
+}
+
+td.to-center-side-cell {
+    width: 20%;
+}
+
+caption.result {
+    color: blue;
+    font-size: larger;
+    background-color: deeppink;
+}
