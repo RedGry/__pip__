@@ -57,9 +57,9 @@ function parseParameters(){
     $rArray = array();
     foreach ($_GET as $key => $value) {
         if (substr($key, 0, 1) === "y" && $value === "on") {
-            $yArray[] = substr($key, 1);
+            $yArray[] = str_replace('_', '.', substr($key, 1));
         } elseif (substr($key, 0, 1) === "r" && $value === "on") {
-            $rArray[] = substr($key, 1);
+            $rArray[] = str_replace('_', '.', substr($key, 1));
         }
     }
     return [$yArray, $rArray];
@@ -93,7 +93,7 @@ function check($x, $y, $r){
         'y' => $y,
         'r' => $r,
         'result' => $result,
-        'calcTime' => $calcTime
+        'calcTime' => round($calcTime, 10)
     );
 
     return $result;
@@ -214,7 +214,7 @@ function renderResultPage(){
         renderError($isCorrect['message']);
     else {
         $parameters = parseParameters();
-        $x = $_GET["x"];
+        $x = str_replace('_', '.', $_GET["x"]);
         $yArray = $parameters[0];
         $rArray = $parameters[1];
 
@@ -230,11 +230,14 @@ function renderHistoryPage(){
         $history = array_slice($history, -10, 10);
     $result = '';
     foreach ($history as $point){
+        $result = $result . '|';
         foreach ($point as $key => $value){
-            $result = $result . $key . ': ' . $value . ' | ';
+            if ($key === 'result')
+                $value = $value?'true':'false';
+            $result = $result . $key . '=' . $value . '|';
         }
         $result = $result . '<br><br>';
     }
-    renderError('NotImplemented<br>H1570RY<br><br>' . $result);
+    echo bodyWrapper(toСenter('NotImplemented<br>H1570RY<br><br><pre>' . $result . '</pre>'), 'history-page');
 }
 ?>

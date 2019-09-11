@@ -21,6 +21,12 @@ body.error-message {
     background-color: azure;
 }
 
+body.history-page {
+    background-image: url('images/strang-bg-2.gif');
+    font: bold larger Serif;
+    color: aqua;
+}
+
 #result-iframe {
     border: 0;
     margin: 3% 0;
