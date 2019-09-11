@@ -1,6 +1,16 @@
 <?php
+$yValues = [-4, '-3', -2, -1, 0, 1, 2, 3, 4];
+$rValues = [1, 1.5, 2, 2.5, 3];
+$xMax = 3;
+$xMin = -5;
+
 $areaImg = '<img id="areas-img" style="" src="static/areas.png">';
-$closeButton = '<button onclick="resetResult()" style="margin-bottom: 390%;margin-left: 30%;">reset</button>';
+
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
 
 function resultTableWrapper($x, $html){
     return '<pre>
@@ -10,13 +20,13 @@ function resultTableWrapper($x, $html){
                     </caption>
                     <tbody>
                         <th>X:</th><td>' . $x . '</td>'
-                        . $html .
-                    '</tbody>
+        . $html .
+        '</tbody>
                 </table>
             </pre>';
 }
 
-function toСenter($html, $leftCellHtml='', $rightCellHtml=''){
+function toСenter($html, $leftCellHtml = '', $rightCellHtml = ''){
     return '<table  width="100%">
                 <tbody>
                     <tr>
@@ -30,23 +40,22 @@ function toСenter($html, $leftCellHtml='', $rightCellHtml=''){
             </table>';
 }
 
-function bodyWrapper($html, $class){
+function bodyWrapper($html, $class = '', $id = ''){
     return '<html>
                 <head>
                     <title> %20RESULT</title>
                     <link href="static/style.css" rel="stylesheet">
-                    <script src="static/script.js"></script>
                 </head>
-                <body class="' . $class . '" >'
+                <body class="' . $class . '" id="' . $id . '" >'
                     . $html .
                 '</body>
             </html>';
 }
 
-function parseParameters($get){
+function parseParameters(){
     $yArray = array();
     $rArray = array();
-    foreach ($get as $key => $value) {
+    foreach ($_GET as $key => $value) {
         if (substr($key, 0, 1) === "y" && $value === "on") {
             $yArray[] = substr($key, 1);
         } elseif (substr($key, 0, 1) === "r" && $value === "on") {
@@ -103,39 +112,108 @@ function generateResultTable($x, $yArray, $rArray){
     return $table = resultTableWrapper($x, $tmpTable);
 }
 
-function checkParameters(){
+function isCorrectParameters(){
+    global $xMax, $xMin, $yValues, $rValues;
+    $haveXValue = false;
+    $haveRValue = false;
+    $haveYValue = false;
     foreach ($_GET as $key => $value) {
-        if (substr($key, 0, 1) === "y" && $value === "on") {
-            $yArray[] = substr($key, 1);
-        } elseif (substr($key, 0, 1) === "r" && $value === "on") {
-            $rArray[] = substr($key, 1);
+        $param = substr($key, 0, 1);
+        if ($param === 'y') {
+            if ($value === 'on' || $value === 'off') {
+                $v = str_replace(',', '.', substr($key, 1));
+                if (!in_array($v, $yValues)){
+                    return array(
+                        'result' => false,
+                        'message' => 'wrong y value: ' . $v
+                    );
+                }
+                $haveYValue = true;
+            } else {
+                return array(
+                    'result' => false,
+                    'message' => 'wrong y checkbox value: ' . $value
+                );
+            }
         }
+        elseif ($param === 'r') {
+            if ($value === 'on' || $value === 'off') {
+                $v = str_replace(',', '.', substr($key, 1));
+                if (!in_array($v, $rValues))
+                    return array(
+                        'result' => false,
+                        'message' => 'wrong r value: ' . $v
+                    );
+                $haveRValue = true;
+            } else {
+                return array(
+                    'result' => false,
+                    'message' => 'wrong r checkbox value: ' . $value
+                );
+            }
+        }
+        elseif ($param === 'x') {
+            if ($key !== 'x'){
+                return array(
+                    'result' => false,
+                    'message' => 'unknown parameter name: ' . $key
+                );}
+            $v = str_replace(',', '.', $value);
+            if ($v<=$xMin || $v>=$xMax)
+                return array(
+                'result' => false,
+                'message' => 'wrong x value: ' . $v
+            );
+            $haveXValue = true;
+        }
+        else {
+            if ($key !== 'needResult' and $value !== 'true')
+                return array(
+                    'result' => false,
+                    'message' => 'unknown parameter name: ' . $key
+                );
+        }
+
+    }
+    if (! ($haveYValue && $haveRValue && $haveXValue))
+        return array(
+            'result' => false,
+            'message' => 'not enough parameters'
+        );
+    return array(
+        'result' => true,
+        'message' => ''
+    );
+
+}
+
+function renderError($message){
+    echo bodyWrapper(toСenter($message), 'error-message');
+}
+
+function renderAreasImg(){
+    global $areaImg;
+    echo bodyWrapper($areaImg, 'default-result');
+}
+
+function renderResultPage(){
+    $isCorrect = isCorrectParameters();
+    if (! $isCorrect['result'])
+        renderError($isCorrect['message']);
+    else {
+        $parameters = parseParameters();
+        $x = $_GET["x"];
+        $yArray = $parameters[0];
+        $rArray = $parameters[1];
+
+        $table = generateResultTable($x, $yArray, $rArray);
+
+        echo bodyWrapper(toСenter($table), 'result-page');
     }
 }
 
-function renderError($message) {
-    return bodyWrapper(toСenter($message), 'error-message');
+function renderHistoryPage(){
+    renderError('NotImplemented');
 }
 
-function renderAreasImg() {
-    global $areaImg;
-    echo bodyWrapper($areaImg);
-}
-
-function renderResultPage() {
-    global $closeButton;
-
-    $parameters = parseParameters($_GET);
-    $x = $_GET["X"];
-    $yArray = $parameters[0];
-    $rArray = $parameters[1];
-
-    $table = generateResultTable($x, $yArray, $rArray);
-
-    echo bodyWrapper(toСenter($table, '', $closeButton), 'result-page');
-}
-
-function renderHistoryPage() {
-    echo 'NotImplemented';
-}
 ?>

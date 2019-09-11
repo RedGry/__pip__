@@ -8,14 +8,14 @@ if (!isset($_SESSION['results'])) {
 
 // TODO: check params here
 
+
+
 switch (count($_GET)) {
     case 1:
         if ($_GET['needAreasImage'] == 'true') {
             renderAreasImg();
             break;
-        }
-    case 2:
-        if ($_GET['needResultFromHistory'] == 'true' and $_GET['resultIndex']) {
+        } elseif ($_GET['needResultFromHistory'] == 'true') {
             renderHistoryPage();
             break;
         }
@@ -25,7 +25,7 @@ switch (count($_GET)) {
             break;
         }
         http_response_code(400);
-        echo toСenter('wrong parameters');
+        renderError('wrong parameters');
 }
 ?>
 

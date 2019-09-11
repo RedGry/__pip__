@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>pip-1</title>
+    <link href="static/style.css" rel="stylesheet">
     <script src="static/script.js"></script>
 </head>
-<body style="background-color: darkslateblue; overflow: hidden; background-image: url('static/mario.gif'); color: aqua">
+<body disfigure='true'>
 <table width="100%">
     <tr>
         <th style="text-align: left; padding-left: 2%; background-color: black">Agababyan Karlen<br>Group P3202<br>202000<br>
@@ -28,7 +29,7 @@
                                         <p>
                                             X: <br>
                                             <input id="x-input" autocomplete="off" oninput="onEditX()"
-                                                   style="text-align: center; width: 175px;" type="text" name="X">
+                                                   style="text-align: center; width: 175px;" type="text" name="x">
                                         </p>
                                         <table style="" width="420px" border="1">
                                             <tbody>
@@ -88,9 +89,14 @@
                                         </table>
                                         <input type="hidden" name="needResult" value="true">
                                         <br>
-                                        <input style="text-align: center; font-size: medium" type="submit" value="send">
+                                        <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
+                                        <input class="button" type="submit" value="send">
+                                        <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>
                                     </form>
-                                    <iframe id="result-iframe" name="result" src="script.php?needAreasImage=true" style="border: 0px; margin:3% 0%; background-image: url('static/strange-bg.gif'); width: 420px; height: 320px;">
+                                    <iframe id="result-iframe" name="result" src="script.php?needAreasImage=true">
+                                        server crashed
+                                    </iframe>
+                                    <iframe id="history-iframe" name="history" src="script.php?needResultFromHistory=true">
                                         server crashed
                                     </iframe>
                                 </td>
