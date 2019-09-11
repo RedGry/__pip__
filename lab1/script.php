@@ -6,10 +6,6 @@ if (!isset($_SESSION['results'])) {
     $_SESSION['results'] = [];
 }
 
-// TODO: check params here
-
-
-
 switch (count($_GET)) {
     case 1:
         if ($_GET['needAreasImage'] == 'true') {
