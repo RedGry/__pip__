@@ -226,18 +226,19 @@ function renderResultPage(){
 
 function renderHistoryPage(){
     $history = $_SESSION['results'];
-    if (sizeof($history) > 10)
-        $history = array_slice($history, -10, 10);
+    if (sizeof($history) > 100)
+        $history = array_slice($history, -100, 100);
+    $history = array_reverse($history);
     $result = '';
     foreach ($history as $point){
-        $result = $result . '|';
+        $result = $result . '<span class="history">|';
         foreach ($point as $key => $value){
             if ($key === 'result')
                 $value = $value?'true':'false';
             $result = $result . $key . '=' . $value . '|';
         }
-        $result = $result . '<br><br>';
+        $result = $result . '</span><br><br>';
     }
-    echo bodyWrapper(toСenter('NotImplemented<br>H1570RY<br><br><pre>' . $result . '</pre>'), 'history-page');
+    echo bodyWrapper(toСenter('<span class="caption">H1570RY</span><br><pre>' . $result . '</pre>'), 'history-page');
 }
 ?>

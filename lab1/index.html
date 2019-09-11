@@ -28,11 +28,18 @@
                                 <td id="left-main-container"></td>
                                 <td id="main-container">
                                     <form id="main-form" target="result" method="get" action="script.php" onsubmit="onSubmitForm()">
-                                        <p>
-                                            X: <br>
-                                            <input id="x-input" autocomplete="off" oninput="onEditX()" type="text" name="x">
-                                        </p>
-                                        <table id="variant-table">
+                                        <input type="hidden" name="needResult" value="true">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    X: <br>
+                                                    <input id="x-input" autocomplete="off" oninput="onEditX()" type="text" name="x">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table id="variant-table">
                                             <tbody>
                                             <tr>
                                                 <td>
@@ -88,19 +95,26 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <input type="hidden" name="needResult" value="true">
-                                        <br>
-                                        <table  class="max-size">
-                                            <tbody>
+                                                </td>
+                                            </tr>
                                             <tr>
-                                                <td id="left-button-cell">
-                                                    <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
-                                                </td>
-                                                <td id="middle-button-cell">
-                                                    <input class="button" type="submit" value="send">
-                                                </td>
-                                                <td id="right-button-cell">
-                                                    <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>
+                                                <td>
+                                                    <br>
+                                                    <table  class="max-size" >
+                                                        <tbody>
+                                                        <tr>
+                                                            <td id="left-button-cell">
+                                                                <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
+                                                            </td>
+                                                            <td id="middle-button-cell">
+                                                                <input class="button" type="submit" value="send">
+                                                            </td>
+                                                            <td id="right-button-cell">
+                                                                <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </td>
                                             </tr>
                                             </tbody>

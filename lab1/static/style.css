@@ -51,7 +51,7 @@ body.history-page {
     display: inline-block;
     color: black;
     text-decoration: none;
-    font: 110% serif;
+    font: 100% serif;
 }
 
 .button:hover {
@@ -107,12 +107,13 @@ td.center-cell {
 
 #main-form {
     text-align: center;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 #x-input {
     text-align: center;
     width: 175px;
+    margin-bottom: 5%;
 }
 
 #variant-table {
@@ -149,4 +150,14 @@ caption.result {
     color: blue;
     font-size: larger;
     background-color: deeppink;
+}
+
+span.history {
+    background-color: deeppink;
+    color: white;
+}
+
+span.caption {
+    background-color: black;
+    font: 130% Serif;
 }
