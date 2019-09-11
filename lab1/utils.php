@@ -4,7 +4,7 @@ $rValues = [1, 1.5, 2, 2.5, 3];
 $xMax = 3;
 $xMin = -5;
 
-$areaImg = '<img id="areas-img" style="" src="static/areas.png">';
+$areaImg = '<img id="areas-img" src="static/images/areas.png">';
 
 function console_log( $data ){
     echo '<script>';
@@ -27,7 +27,7 @@ function resultTableWrapper($x, $html){
 }
 
 function toСenter($html, $leftCellHtml = '', $rightCellHtml = ''){
-    return '<table  width="100%">
+    return '<table class="max-size">
                 <tbody>
                     <tr>
                         <td width="20%">' . $leftCellHtml . '</td>

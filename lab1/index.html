@@ -7,36 +7,37 @@
     <script src="static/script.js"></script>
 </head>
 <body disfigure='true'>
-<table width="100%">
+<table class="max-size">
     <tr>
-        <th style="text-align: left; padding-left: 2%; background-color: black">Agababyan Karlen<br>Group P3202<br>202000<br>
-            <a href="http://github.com/SunnyCapt/__pip__" style="color: yellow">Source</a>
+        <th id="header">
+            Agababyan Karlen<br>
+            Group P3202<br>
+            202000<br>
+            <a class="pretty-link" href="//github.com/SunnyCapt/__pip__">Source</a>
         </th>
     </tr>
     <tr>
-        <td width="20%" style="vertical-align: top; padding-top: 1%;">
-        </td>
-        <td width="60%" style="padding-bottom: 5%;font-size: large">
-            <table width="100%">
+        <td class="side-cell"></td>
+        <td class="center-cell">
+            <table class="max-size">
                 <tr>
-                    <td width="20%"></td>
-                    <td width="60%">
-                        <table width="100%" style="background-color: black">
+                    <td class="side-cell"></td>
+                    <td class="center-cell">
+                        <table class="max-size blacked">
                             <tr>
-                                <td width="30%"></td>
-                                <td id="main" width="30%">
-                                    <form target="result" method="get" action="script.php" onsubmit="onSubmitForm()" style="text-align: center; margin-top: 10%;">
+                                <td id="left-main-container"></td>
+                                <td id="main-container">
+                                    <form id="main-form" target="result" method="get" action="script.php" onsubmit="onSubmitForm()">
                                         <p>
                                             X: <br>
-                                            <input id="x-input" autocomplete="off" oninput="onEditX()"
-                                                   style="text-align: center; width: 175px;" type="text" name="x">
+                                            <input id="x-input" autocomplete="off" oninput="onEditX()" type="text" name="x">
                                         </p>
-                                        <table style="" width="420px" border="1">
+                                        <table id="variant-table">
                                             <tbody>
                                             <tr>
                                                 <td>
-                                                    <table width="100%" height="100%" border="1">
-                                                        <tbody id="y-table">
+                                                    <table class="max-size" border="1">
+                                                        <tbody>
                                                         <tr>
                                                             <th></th>
                                                             <th>Y:</th>
@@ -61,7 +62,7 @@
                                                     </table>
                                                 </td>
                                                 <td height="100%">
-                                                    <table width="100%" height="100%" border="1">
+                                                    <table class="max-size"  border="1">
                                                         <tbody id="r-table">
                                                         <tr>
                                                             <th>R:</th>
@@ -89,9 +90,21 @@
                                         </table>
                                         <input type="hidden" name="needResult" value="true">
                                         <br>
-                                        <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
-                                        <input class="button" type="submit" value="send">
-                                        <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>
+                                        <table  class="max-size">
+                                            <tbody>
+                                            <tr>
+                                                <td id="left-button-cell">
+                                                    <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
+                                                </td>
+                                                <td id="middle-button-cell">
+                                                    <input class="button" type="submit" value="send">
+                                                </td>
+                                                <td id="right-button-cell">
+                                                    <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </form>
                                     <iframe id="result-iframe" name="result" src="script.php?needAreasImage=true">
                                         server crashed
@@ -100,16 +113,15 @@
                                         server crashed
                                     </iframe>
                                 </td>
-                                <td width="30%"></td>
+                                <td id="right-main-container"></td>
                             </tr>
                         </table>
                     </td>
-                    <td width="20%"></td>
+                    <td class="side-cell"></td>
                 </tr>
             </table>
         </td>
-        <td width="20%" style="vertical-align: top; padding-top: 1%;">
-        </td>
+        <td class="side-cell"></td>
     </tr>
 </table>
 </body>

@@ -1,7 +1,7 @@
 body[disfigure=true] {
     background-color: darkslateblue;
     /*overflow: hidden;*/
-    background-image: url('mario.gif');
+    background-image: url('images/mario.gif');
     color: aqua
 }
 
@@ -9,7 +9,7 @@ body.result-page {
     overflow: hidden;
     margin: 0;
     color: red;
-    background-image: url('strange-bg.gif');
+    background-image: url('images/strange-bg.gif');
 }
 
 body.default-result {
@@ -53,4 +53,78 @@ body.error-message {
     border: 1px solid aqua;
     display: inline-block;
     color: black;
+}
+
+#header {
+    text-align: left;
+    padding-left: 2%;
+    background-color: black
+}
+
+table.max-size {
+    width: 100%;
+    height: 100%;
+}
+
+table.blacked {
+    background-color: black;
+}
+
+a.pretty-link {
+    color: yellow;
+    text-decoration: none;
+}
+
+td.side-cell {
+    vertical-align: top;
+    width: 20%;
+    padding-top: 1%;
+}
+
+td.center-cell {
+    width: 60%;
+    padding-bottom: 5%;
+    font-size: large;
+}
+
+#left-main-container {
+    width: 30%;
+}
+
+#main-container {
+    width: 30%;
+}
+
+#right-main-container {
+    width: 30%;
+}
+
+#main-form {
+    text-align: center;
+    margin-top: 10%;
+}
+
+#x-input {
+    text-align: center;
+    width: 175px;
+}
+
+#variant-table {
+    width: 420px;
+    border: 1px aqua solid;
+}
+
+#left-button-cell {
+    width: 40%;
+    text-align: left;
+}
+
+#middle-button-cell {
+    width: 20%;
+    text-align: center;
+}
+
+#right-button-cell {
+    width: 40%;
+    text-align: right;
 }
