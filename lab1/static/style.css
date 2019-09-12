@@ -161,3 +161,8 @@ span.caption {
     background-color: black;
     font: 130% Serif;
 }
+
+#clock {
+    color: black;
+    font: xx-small sans-serif;
+}

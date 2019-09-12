@@ -17,11 +17,14 @@ function resultTableWrapper($x, $html){
                 <table bgcolor="#000000">
                     <caption class="result">
                         %R35Ul7%
+                        <br>
+                        <span id="clock" style=""></span>
                     </caption>
                     <tbody>
-                        <th>X:</th><td>' . $x . '</td>'
-        . $html .
-        '</tbody>
+                        <th>X:</th>
+                        <td>' . $x . '</td>'
+                        . $html .
+                    '</tbody>
                 </table>
             </pre>';
 }
@@ -40,13 +43,14 @@ function toСenter($html, $leftCellHtml = '', $rightCellHtml = ''){
             </table>';
 }
 
-function bodyWrapper($html, $class = '', $id = ''){
+function bodyWrapper($html, $class = '', $id = '', $attr=''){
     return '<html>
                 <head>
                     <title> %20RESULT</title>
                     <link href="static/style.css" rel="stylesheet">
+                    <script src="static/script.js"></script>
                 </head>
-                <body class="' . $class . '" id="' . $id . '" >'
+                <body class="' . $class . '" id="' . $id . '" ' . $attr . ' >'
                     . $html .
                 '</body>
             </html>';
@@ -220,7 +224,7 @@ function renderResultPage(){
 
         $table = generateResultTable($x, $yArray, $rArray);
 
-        echo bodyWrapper(toСenter($table), 'result-page');
+        echo bodyWrapper(toСenter($table), 'result-page', '', 'onload="onLoadResult()"');
     }
 }
 
