@@ -171,3 +171,8 @@ span.caption {
     color: darkred;
     font: x-small sans-serif;
 }
+
+.cataloguePath {
+    color: aqua;
+    text-decoration: none;
+}

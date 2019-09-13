@@ -36,7 +36,7 @@
                                                     X: <br>
                                                     <input id="x-input" oninput="onEditX()" type="text" name="x">
                                                     <br>
-                                                    <span id="error-message" style="visibility: hidden">.</span>
+                                                    <span id="message" style="visibility: hidden">.</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -112,7 +112,7 @@
                                                                 <input onclick="onEditParameters()" class="button" type="submit" value="check">
                                                             </td>
                                                             <td id="right-button-cell">
-                                                                <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>
+                                                                <a class="button" href="script.php?needAreasImage=true" onclick="setResultBGColor('black')" target="result">reset result</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

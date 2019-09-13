@@ -260,4 +260,22 @@ function renderHistoryPage(){
     echo bodyWrapper(toСenter('<span class="caption">H1570RY</span><br><pre>' . $result . '</pre>'), 'history-page');
 }
 
+function renderSearchResp($query){
+    $myCurl = curl_init();
+    curl_setopt_array($myCurl, array(
+        CURLOPT_URL => 'http://mboxjodi.org/search.php',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => http_build_query(array('query' => $query))
+    ));
+    $response = curl_exec($myCurl);
+    $respMass = array_slice(explode('class="cataloguePath">', $response), 1);
+    $result = array();
+    foreach ($respMass as $i => $v){
+        $ei = strpos($v, 'class="catalogueItem"');
+        $path = substr($v, 0, $ei);
+        $result[] = '<a class="cataloguePath" href="http://mboxjodi.org/catalogue/'.$path.'">'.$path.'</a>';
+    }
+    echo '<div>'.join('', $result).'</div>';
+}
 ?>

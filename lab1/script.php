@@ -14,6 +14,9 @@ switch (count($_GET)) {
         } elseif ($_GET['needResultFromHistory'] == 'true') {
             renderHistoryPage();
             break;
+        } elseif ($_GET['query']){
+            renderSearchResp($_GET['query']);
+            break;
         }
     default:
         if ($_GET['needResult'] == 'true'){
