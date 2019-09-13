@@ -75,7 +75,7 @@ table.max-size {
 }
 
 
-table.blacked {
+body > table .blacked {
     background-color: black;
 }
 
