@@ -167,9 +167,9 @@ span.caption {
     font: x-small sans-serif;
 }
 
-#error-message {
-    color: darkred;
-    font: x-small sans-serif;
+#message {
+    color: red;
+    font: bold x-small sans-serif;
 }
 
 .cataloguePath {
