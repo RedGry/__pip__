@@ -281,6 +281,7 @@ function renderSearchResp($query)
     foreach ($respMass as $i => $v) {
         $ei = strpos($v, 'class="catalogueItem"');
         $path = substr($v, 0, $ei);
+        $path = str_replace('</span></span><div ', '', $path);
         $result[] = '<a class="cataloguePath" href="http://mboxjodi.org/catalogue/' . $path . '">' . $path . '</a>';
     }
     echo '<div>' . join('', $result) . '</div>';
