@@ -12,13 +12,27 @@ function console_log( $data ){
     echo '</script>';
 }
 
-function resultTableWrapper($x, $html){
+function calcDuration($start, $finish){
+    $startCalcTime = explode(' ', $start);
+    $finishCalcTime = explode(' ', $finish);
+
+    $calcTimeSec = $finishCalcTime[1] - $startCalcTime[1];
+    $calcTimeMsec = $finishCalcTime[0] - $startCalcTime[0];
+
+    if ($calcTimeSec === 0)
+        return round($calcTimeMsec, 10);
+    else
+        return $calcTimeSec + $calcTimeMsec;
+}
+
+function resultTableWrapper($x, $html, $procctime){
     return '<pre>
-                <table bgcolor="#000000">
+            <table><tbody><tr><td>
+                <table class="blacked max-size">
                     <caption class="result">
                         %R35Ul7%
                         <br>
-                        <span id="clock" style=""></span>
+                        <span class="time" id="now"></span>|<span class="time">duration: '.$procctime.'</span>
                     </caption>
                     <tbody>
                         <th>X:</th>
@@ -26,6 +40,7 @@ function resultTableWrapper($x, $html){
                         . $html .
                     '</tbody>
                 </table>
+            </td></tr></tbody></table>
             </pre>';
 }
 
@@ -70,7 +85,7 @@ function parseParameters(){
 }
 
 function check($x, $y, $r){
-    $startCalcTime = explode(' ', microtime());
+    $startTime = microtime();
     $result = false;
     if ($x < 0 and $y < 0) {
         $result = false;
@@ -82,28 +97,20 @@ function check($x, $y, $r){
     elseif ($x <= ((int)$r) / 2 and $y >= $r)
         $result = true;
 
-    $finishCalcTime = explode(' ', microtime());
-
-    $calcTimeSec = $finishCalcTime[1] - $startCalcTime[1];
-    $calcTimeMsec = $finishCalcTime[0] - $startCalcTime[0];
-
-    if ($calcTimeSec === 0)
-        $calcTime = $calcTimeMsec;
-    else
-        $calcTime = $calcTimeSec + $calcTimeMsec;
+    $calcTime = calcDuration($startTime, microtime());
 
     $_SESSION['results'][] = array(
         'x' => $x,
         'y' => $y,
         'r' => $r,
         'result' => $result,
-        'calcTime' => round($calcTime, 10)
+        'calcTime' => $calcTime
     );
 
     return $result;
 }
 
-function generateResultTable($x, $yArray, $rArray){
+function generateResultTable($x, $yArray, $rArray, $startTime){
     $tmpTable = '';
     foreach ($rArray as $rIndex => $r) {
         if ($rIndex === 0) {
@@ -125,7 +132,7 @@ function generateResultTable($x, $yArray, $rArray){
             }
         }
     }
-    return $table = resultTableWrapper($x, $tmpTable);
+    return $table = resultTableWrapper($x, $tmpTable, calcDuration($startTime, microtime()));
 }
 
 function isCorrectParameters(){
@@ -138,7 +145,9 @@ function isCorrectParameters(){
         if ($param === 'y') {
             if ($value === 'on' || $value === 'off') {
                 $v = str_replace(',', '.', substr($key, 1));
-                if (!in_array($v, $yValues)){
+                if (substr($v, 0, 1) !== '_' && substr($v, strlen($v)-1, 1) !== '_')
+                    $v = str_replace('_', '.', $v);
+                if (!in_array($v, $yValues) || !is_numeric($v)){
                     return array(
                         'result' => false,
                         'message' => 'wrong y value: ' . $v
@@ -155,7 +164,11 @@ function isCorrectParameters(){
         elseif ($param === 'r') {
             if ($value === 'on' || $value === 'off') {
                 $v = str_replace(',', '.', substr($key, 1));
-                if (!in_array($v, $rValues))
+                if (substr($v, 0, 1) !== '_' && substr($v, strlen($v)-1, 1) !== '_'){
+                    $v = str_replace('_', '.', $v);
+                }
+                console_log($v);
+                if (!in_array($v, $rValues) || !is_numeric($v))
                     return array(
                         'result' => false,
                         'message' => 'wrong r value: ' . $v
@@ -175,7 +188,7 @@ function isCorrectParameters(){
                     'message' => 'unknown parameter name: ' . $key
                 );}
             $v = str_replace(',', '.', $value);
-            if ($v<=$xMin || $v>=$xMax)
+            if (!is_numeric($v) || $v<=$xMin || $v>=$xMax)
                 return array(
                 'result' => false,
                 'message' => 'wrong x value: ' . $v
@@ -213,6 +226,7 @@ function renderAreasImg(){
 }
 
 function renderResultPage(){
+    $startTime = microtime();
     $isCorrect = isCorrectParameters();
     if (! $isCorrect['result'])
         renderError($isCorrect['message']);
@@ -222,9 +236,9 @@ function renderResultPage(){
         $yArray = $parameters[0];
         $rArray = $parameters[1];
 
-        $table = generateResultTable($x, $yArray, $rArray);
+        $table = generateResultTable($x, $yArray, $rArray, $startTime);
 
-        echo bodyWrapper(toСenter($table), 'result-page', '', 'onload="onLoadResult()"');
+        echo bodyWrapper(toСenter($table), 'result-page', '', 'onload="clock()"');
     }
 }
 
@@ -245,4 +259,5 @@ function renderHistoryPage(){
     }
     echo bodyWrapper(toСenter('<span class="caption">H1570RY</span><br><pre>' . $result . '</pre>'), 'history-page');
 }
+
 ?>

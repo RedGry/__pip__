@@ -34,7 +34,9 @@
                                             <tr>
                                                 <td>
                                                     X: <br>
-                                                    <input id="x-input" autocomplete="off" oninput="onEditX()" type="text" name="x">
+                                                    <input id="x-input" oninput="onEditX()" type="text" name="x">
+                                                    <br>
+                                                    <span id="error-message" style="visibility: hidden">.</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -44,26 +46,26 @@
                                             <tr>
                                                 <td>
                                                     <table class="max-size" border="1">
-                                                        <tbody>
+                                                        <tbody id="y-table">
                                                         <tr>
                                                             <th></th>
                                                             <th>Y:</th>
                                                             <th></th>
                                                         </tr>
                                                         <tr>
-                                                            <td>-4<input type="checkbox" name="y-4"></td>
-                                                            <td>-3<input type="checkbox" name="y-3"></td>
-                                                            <td>-2<input type="checkbox" name="y-2"></td>
+                                                            <td>-4<input onchange="onEditParameters()" type="checkbox" name="y-4"></td>
+                                                            <td>-3<input onchange="onEditParameters()" type="checkbox" name="y-3"></td>
+                                                            <td>-2<input onchange="onEditParameters()" type="checkbox" name="y-2"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>-1<input type="checkbox" name="y-1"></td>
-                                                            <td>0<input type="checkbox" name="y0"></td>
-                                                            <td>1<input type="checkbox" name="y1"></td>
+                                                            <td>-1<input onchange="onEditParameters()" type="checkbox" name="y-1"></td>
+                                                            <td>0<input onchange="onEditParameters()" type="checkbox" name="y0"></td>
+                                                            <td>1<input onchange="onEditParameters()" type="checkbox" name="y1"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>2<input type="checkbox" name="y2"></td>
-                                                            <td>3<input type="checkbox" name="y3"></td>
-                                                            <td>4<input type="checkbox" name="y4"></td>
+                                                            <td>2<input onchange="onEditParameters()" type="checkbox" name="y2"></td>
+                                                            <td>3<input onchange="onEditParameters()" type="checkbox" name="y3"></td>
+                                                            <td>4<input onchange="onEditParameters()" type="checkbox" name="y4"></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -75,19 +77,19 @@
                                                             <th>R:</th>
                                                         </tr>
                                                         <tr>
-                                                            <td>1<input type="checkbox" name="r1"></td>
+                                                            <td>1<input onchange="onEditParameters()" type="checkbox" name="r1"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>1.5<input type="checkbox" name="r1.5"></td>
+                                                            <td>1.5<input onchange="onEditParameters()" type="checkbox" name="r1.5"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>2<input type="checkbox" name="r2"></td>
+                                                            <td>2<input onchange="onEditParameters()" type="checkbox" name="r2"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>2.5<input type="checkbox" name="r2.5"></td>
+                                                            <td>2.5<input onchange="onEditParameters()" type="checkbox" name="r2.5"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>3<input type="checkbox" name="r3"></td>
+                                                            <td>3<input onchange="onEditParameters()" type="checkbox" name="r3"></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -107,7 +109,7 @@
                                                                 <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
                                                             </td>
                                                             <td id="middle-button-cell">
-                                                                <input class="button" type="submit" value="send">
+                                                                <input onclick="onEditParameters()" class="button" type="submit" value="check">
                                                             </td>
                                                             <td id="right-button-cell">
                                                                 <a class="button" href="script.php?needAreasImage=true" target="result">reset result</a>

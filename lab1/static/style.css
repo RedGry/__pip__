@@ -72,6 +72,7 @@ table.max-size {
     height: 100%;
 }
 
+
 table.blacked {
     background-color: black;
 }
@@ -113,7 +114,6 @@ td.center-cell {
 #x-input {
     text-align: center;
     width: 175px;
-    margin-bottom: 5%;
 }
 
 #variant-table {
@@ -162,7 +162,12 @@ span.caption {
     font: 130% Serif;
 }
 
-#clock {
+.time {
     color: black;
-    font: xx-small sans-serif;
+    font: x-small sans-serif;
+}
+
+#error-message {
+    color: darkred;
+    font: x-small sans-serif;
 }
