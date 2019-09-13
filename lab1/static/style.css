@@ -64,7 +64,9 @@ body.history-page {
 #header {
     text-align: left;
     padding-left: 2%;
-    background-color: black
+    background-color: black;
+    color: aqua;
+    font: italic 12pt sans-serif;
 }
 
 table.max-size {
