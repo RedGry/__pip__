@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>pip-1</title>
+    <meta http-equiv="Cache-Control" content="no-cache">
     <link href="static/style.css" rel="stylesheet">
     <script src="static/script.js"></script>
 </head>
@@ -106,13 +107,13 @@
                                                         <tbody>
                                                         <tr>
                                                             <td id="left-button-cell">
-                                                                <a class="button" href="script.php?needResultFromHistory=true" target="history">update history</a>
+                                                                <a class="button" onclick="onEditParameters()" href="script.php?needResultFromHistory=true" target="history">update history</a>
                                                             </td>
                                                             <td id="middle-button-cell">
                                                                 <input onclick="onEditParameters()" class="button" type="submit" value="check">
                                                             </td>
                                                             <td id="right-button-cell">
-                                                                <a class="button" href="script.php?needAreasImage=true" onclick="setResultBGColor('black')" target="result">reset result</a>
+                                                                <a class="button" onclick="onEditParameters()" href="script.php?needAreasImage=true" target="result">reset result</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

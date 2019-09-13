@@ -106,20 +106,5 @@ function setDataToIframe(html) {
 function setStrangePage(query) {
     var iframe = document.getElementById('result-iframe');
     iframe.src = 'script.php?query='+query;
-    return;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'script.php?query='+query, true);
-    xhr.onreadystatechange = function() { // (3)
-        if (xhr.readyState != 4) return;
-        message('Done');
-        if (xhr.status != 200) {
-            console.log(xhr.status + ': ' + xhr.statusText);
-        } else {
-            setDataToIframe(xhr.responseText);
-        }
-    }
-
-    xhr.send();
-    message('Loading...');
 }
 

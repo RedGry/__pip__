@@ -62,6 +62,7 @@ function bodyWrapper($html, $class = '', $id = '', $attr=''){
     return '<html>
                 <head>
                     <title> %20RESULT</title>
+                    <meta http-equiv="Cache-Control" content="no-cache">
                     <link href="static/style.css" rel="stylesheet">
                     <script src="static/script.js"></script>
                 </head>
