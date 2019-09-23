@@ -92,19 +92,44 @@ function clock() {
 }
 
 function setDataToIframe(html) {
-    var iframe = document.getElementById('result-iframe');
-    var tmpElem = document.createElement('div');
+    let iframe = document.getElementById('result-iframe');
+    let tmpElem = document.createElement('div');
     tmpElem.innerHTML = html;
-    var paths = Array.from(tmpElem.getElementsByClassName('cataloguePath'));
+    let paths = Array.from(tmpElem.getElementsByClassName('cataloguePath'));
     iframe.innerHTML = '<table class="max-size"><tbody><tr><td class="to-center-side-cell"></td><td class="to-center-main-cell"></td><td class="to-center-side-cell"></td></tr></tbody></table>'
-    var container = iframe.getElementsByClassName('to-center-main-cell')[0];
-    for (var path in paths){
+    let container = iframe.getElementsByClassName('to-center-main-cell')[0];
+    for (var path in paths) {
         container.append('<a class="cataloguePath" href="http://mboxjodi.org/catalogue/' + path.textContent + '">path.textContent</a>');
     }
 }
 
 function setStrangePage(query) {
-    var iframe = document.getElementById('result-iframe');
-    iframe.src = 'script.php?query='+query;
+    let iframe = document.getElementById('result-iframe');
+    iframe.src = 'script.php?query=' + query;
 }
 
+function loadImage(url) {
+    return new Promise(resolve => {
+        let img = new Image();
+        img.src = url;
+        resolve(img);
+    });
+}
+
+const Kitty = function (queryUrl) {
+    this.url = queryUrl;
+};
+
+Kitty.prototype.showKitty = image => {
+    let cell = document.getElementById('kitty-cell');
+    Array.from(cell.children).forEach(value => value.remove());
+    cell.appendChild(image);
+}
+
+Kitty.prototype.setNew = () => fetch(this.url)
+    .then(response => response.json())
+    .then(kittyJSON => loadImage(kittyJSON.url))
+    .then(this.showKitty);
+
+
+// var links = ['https://api.thecatapi.com/v1/images/search?mime_types=gif', 'http://api.thecatapi.com/v1/images/search'];
