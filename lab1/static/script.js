@@ -5,6 +5,8 @@ const rValues = [1, 1.5, 2, 2.5, 3];
 const xMax = 3;
 const xMin = -5;
 
+const kittyUpdateRate = 1488 * 5;
+
 function message(msg) {
     var node = document.getElementById('message');
     node.innerText = msg;
@@ -112,7 +114,7 @@ function loadImage(url) {
     return new Promise(resolve => {
         let img = new Image();
         img.src = url;
-        resolve(img);
+        img.onload = () => resolve(img);
     });
 }
 
@@ -120,16 +122,27 @@ const Kitty = function (queryUrl) {
     this.url = queryUrl;
 };
 
-Kitty.prototype.showKitty = image => {
+Kitty.prototype.show = image => {
     let cell = document.getElementById('kitty-cell');
     Array.from(cell.children).forEach(value => value.remove());
+    let height = getComputedStyle(document.getElementById('header')).height;
+    height = height.substring(0, height.length - 2);
+    let k =  height / image.height;
+    image.width = image.width * k;
+    image.height = image.height * k;
+    cell.href = image.src;
     cell.appendChild(image);
 }
 
-Kitty.prototype.setNew = () => fetch(this.url)
-    .then(response => response.json())
-    .then(kittyJSON => loadImage(kittyJSON.url))
-    .then(this.showKitty);
+Kitty.prototype.load = function () {
+    return fetch(this.url)
+        .then(response => response.json())
+        .then(kittyJSON => loadImage(kittyJSON[0].url)
+        );
+}
 
-
-// var links = ['https://api.thecatapi.com/v1/images/search?mime_types=gif', 'http://api.thecatapi.com/v1/images/search'];
+function onLoadIndex() {
+    let kitty = new Kitty('http://api.thecatapi.com/v1/images/search?mime_types=gif');
+    kitty.load().then(kitty.show)
+    setInterval(() => kitty.load().then(kitty.show), kittyUpdateRate);
+}
