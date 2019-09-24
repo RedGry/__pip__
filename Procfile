@@ -1,0 +1,1 @@
+lab_1: vendor/bin/heroku-php-apache2 lab1/
