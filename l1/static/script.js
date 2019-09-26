@@ -93,7 +93,7 @@ function setDataToIframe(html) {
     iframe.innerHTML = '<table class="max-size"><tbody><tr><td class="to-center-side-cell"></td><td class="to-center-main-cell"></td><td class="to-center-side-cell"></td></tr></tbody></table>'
     let container = iframe.getElementsByClassName('to-center-main-cell')[0];
     for (var path in paths) {
-        container.append('<a class="cataloguePath" href="http://mboxjodi.org/catalogue/' + path.textContent + '">path.textContent</a>');
+        container.append('<a class="cataloguePath" href="//mboxjodi.org/catalogue/' + path.textContent + '">path.textContent</a>');
     }
 }
 
@@ -134,7 +134,7 @@ Kitty.prototype.load = function () {
 }
 
 function onLoadIndex() {
-    let kitty = new Kitty('http://api.thecatapi.com/v1/images/search?mime_types=gif');
+    let kitty = new Kitty('//api.thecatapi.com/v1/images/search?mime_types=gif');
     kitty.load().then(kitty.show)
     setInterval(() => kitty.load().then(kitty.show), kittyUpdateRate);
 }

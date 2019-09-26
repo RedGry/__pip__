@@ -270,7 +270,7 @@ function renderSearchResp($query)
 {
     $myCurl = curl_init();
     curl_setopt_array($myCurl, array(
-        CURLOPT_URL => 'http://mboxjodi.org/search.php',
+        CURLOPT_URL => '//mboxjodi.org/search.php',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => http_build_query(array('query' => $query))
@@ -282,7 +282,7 @@ function renderSearchResp($query)
         $ei = strpos($v, 'class="catalogueItem"');
         $path = substr($v, 0, $ei);
         $path = str_replace('</span></span><div ', '', $path);
-        $result[] = '<a class="cataloguePath" href="http://mboxjodi.org/catalogue/' . $path . '">' . $path . '</a>';
+        $result[] = '<a class="cataloguePath" href="//mboxjodi.org/catalogue/' . $path . '">' . $path . '</a>';
     }
     echo '<div>' . join('', $result) . '</div>';
 }
