@@ -118,31 +118,34 @@ function clock() {
     document.getElementById('now').innerHTML = 'now: ' + hours + ':' + minutes + ':' + seconds;
 }
 
-const Kitty = function (queryUrl) {
-    this.url = queryUrl;
-};
-
-Kitty.prototype.show = image => {
-    let cell = document.getElementById('kitty-cell');
-    Array.from(cell.children).forEach(value => value.remove());
-    let height = getComputedStyle(document.getElementById('header')).height;
-    height = height.substring(0, height.length - 2);
-    let k =  height / image.height;
-    image.width = image.width * k;
-    image.height = image.height * k;
-    cell.href = image.src;
-    cell.appendChild(image);
-}
-
-Kitty.prototype.load = function () {
-    return fetch(this.url)
-        .then(response => response.json())
-        .then(kittyJSON => loadImage(kittyJSON[0].url)
-        );
+class Kitty{
+    constructor(queryUrl) {
+        this.url = queryUrl;
+    }
+    load() {
+        return fetch(this.url)
+            .then(response => response.json())
+            .then(kittyJSON => loadImage(kittyJSON[0].url)
+            );
+    }
+    static show(image) {
+        let cell = document.getElementById('kitty-cell');
+        Array.from(cell.children).forEach(value => value.remove());
+        let height = getComputedStyle(document.getElementById('header')).height;
+        height = height.substring(0, height.length - 2);
+        let k =  height / image.height;
+        image.width = image.width * k;
+        image.height = image.height * k;
+        cell.href = image.src;
+        cell.appendChild(image);
+    }
 }
 
 function onLoadIndex() {
     let kitty = new Kitty('//api.thecatapi.com/v1/images/search?mime_types=gif');
-    kitty.load().then(kitty.show)
-    setInterval(() => kitty.load().then(kitty.show), kittyUpdateRate);
+    kitty.load().then(Kitty.show)
+    setInterval(
+        () => kitty.load().then(Kitty.show),
+        kittyUpdateRate
+    );
 }
