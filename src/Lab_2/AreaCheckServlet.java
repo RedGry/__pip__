@@ -1,5 +1,9 @@
 package Lab_2;
 
+import javax.faces.annotation.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.context.SessionMap;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
@@ -10,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @WebServlet(name = "AreaCheckServlet", urlPatterns = "/check")
 public class AreaCheckServlet extends HttpServlet {
@@ -21,8 +22,9 @@ public class AreaCheckServlet extends HttpServlet {
     private ServletConfig config;
     private int[] xValues = {-3, -2, -1, 0, 1, 2, 3, 4, 5};
     private double[] rValues = {1, 1.5, 2, 2.5, 3};
-    private PointsTable bean;
     private static final String SESSION_KEY = "points";
+
+    private PointsTableBean bean;
 
     @Override
     public void init (ServletConfig config) {
@@ -38,19 +40,14 @@ public class AreaCheckServlet extends HttpServlet {
         return config;
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            bean = (PointsTable) request.getSession().getAttribute(SESSION_KEY);
+
+            bean = (PointsTableBean) request.getSession().getAttribute("myBean");
 
             if (bean == null) {
-                try {
-                    InitialContext ic = new InitialContext();
-                    bean = (PointsTable) ic.lookup("myBean");
-
-                    request.getSession().setAttribute(SESSION_KEY, bean);
-                } catch (NamingException e) {
-                    throw new ServletException(e);
-                }
+                bean = new PointsTableBean();
+                request.getSession().setAttribute("myBean", bean);
             }
 
             boolean load = request.getParameter("load").equals("1");

@@ -29,5 +29,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="Java EE 5-Java EE 5" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="javax.faces:javax.faces-api:2.3" level="project" />
   </component>
 </module>

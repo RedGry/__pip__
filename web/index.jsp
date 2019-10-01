@@ -1,10 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"
         language="java" import="java.util.List, java.util.ArrayList, Lab_2.AreaCheckServlet"
         session="true"
+
 %>
 
 <!DOCTYPE html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Lab2-Web</title>
