@@ -49,7 +49,7 @@
         <span class="tooltip">
             <input type="text" name="y_input" maxlength="5" x id="y_in" value="0"
                    onblur="return verifyY(this);" oninput="return verifyY(this);">
-            <span>Y координата должна быть числом в диапазоне [-3 ... 5]</span>
+            <span>Y координата должна быть числом в диапазоне [-5 ... 3]</span>
         </span>
 
         <p>И наконец, R:
@@ -76,7 +76,7 @@
     </div>
 
     <div class="graphic">
-        <canvas id="canvas" width="300" height="300"></canvas>
+        <canvas id="canvas" onclick="clickCanvas(r_out.value)" width="300" height="300" ></canvas>
     </div>
 
 

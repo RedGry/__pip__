@@ -7,7 +7,23 @@ function init() {
     loadValue.value = 0;
 }
 
+function clickCanvas(R) {
+    console.log("Click on canvas");
+    let canvas = document.getElementById("canvas");
+
+    let br = canvas.getBoundingClientRect();
+    let left = br.left;
+    let top = br.top;
+
+    let event = window.event;
+    let x = event.clientX-left;
+    let y = event.clientY-top;
+
+    markPoint((x-150)/130*R, (-y+150)/130*R, R);
+}
+
 function markPoint(x, y, r) {
+    console.log('Marking point ' + x + ', ' + y + ', ' + r);
     createGraphic('canvas', r);
     let canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
 
@@ -72,36 +88,40 @@ function createGraphic(id, r) {
     //очистка
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    //прямоугольник
-    context.beginPath();
-    context.rect(20, 150, 130, 130);
-    context.closePath();
-    context.strokeStyle = "#2f9aff";
-    context.fillStyle = "#2f9aff";
-    context.fill();
-    context.stroke();
+    if (r != 0) {
 
-    // сектор
-    context.beginPath();
-    context.moveTo(150, 150);
-    context.arc(150, 150, 65, -Math.PI/2, 0, false);
-    context.closePath();
-    context.strokeStyle = "#2f9aff";
-    context.fillStyle = "#2f9aff";
-    context.fill();
-    context.stroke();
+        //прямоугольник
+        context.beginPath();
+        context.rect(20, 150, 130, 130);
+        context.closePath();
+        context.strokeStyle = "#2f9aff";
+        context.fillStyle = "#2f9aff";
+        context.fill();
+        context.stroke();
 
-    //треугольник
-    context.beginPath();
-    context.moveTo(150, 150);
-    context.lineTo(20, 150);
-    context.lineTo(150, 20);
-    context.lineTo(150, 150);
-    context.closePath();
-    context.strokeStyle = "#2f9aff";
-    context.fillStyle = "#2f9aff";
-    context.fill();
-    context.stroke();
+        // сектор
+        context.beginPath();
+        context.moveTo(150, 150);
+        context.arc(150, 150, 65, -Math.PI / 2, 0, false);
+        context.closePath();
+        context.strokeStyle = "#2f9aff";
+        context.fillStyle = "#2f9aff";
+        context.fill();
+        context.stroke();
+
+        //треугольник
+        context.beginPath();
+        context.moveTo(150, 150);
+        context.lineTo(20, 150);
+        context.lineTo(150, 20);
+        context.lineTo(150, 150);
+        context.closePath();
+        context.strokeStyle = "#2f9aff";
+        context.fillStyle = "#2f9aff";
+        context.fill();
+        context.stroke();
+
+    }
 
     //отрисовка осей
     context.beginPath();
@@ -137,6 +157,16 @@ function createGraphic(id, r) {
 
 let prev_y = 0;
 function setRadius(r) {
+    let checked = document.getElementsByClassName('rb');
+    r = 0;
+    for (let el = 0; checked[el]; el++) {
+        if (checked[el].checked) {
+            r += Number(checked[el].value);
+        }
+    }
+
+    console.log('setting radius: '+ r);
+
     r_h_id.value = r;
     r_out.value = r;
     createGraphic('canvas', r);
@@ -163,7 +193,7 @@ function verifyY(y) {
     let y1 = parseFloat(y.value.replace(/,/, '.'));
     let elem = document.getElementById("y_in");
     if (y.value != '' && y.value != '-') {
-        if (!isNumber(y.value.replace(/,/, '.')) || y1 < -5 || y1 > 3) {
+        if (!isNumber(y.value.replace(/,/, '.')) || y1 <= -5 || y1 >= 3) {
             y.focus();
             elem.style.backgroundColor = "red";
             y.value = prev_y;

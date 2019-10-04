@@ -1,11 +1,5 @@
 package Lab_2;
 
-import javax.faces.annotation.ManagedProperty;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.context.SessionMap;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,20 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @WebServlet(name = "AreaCheckServlet", urlPatterns = "/check")
 public class AreaCheckServlet extends HttpServlet {
 
     private ServletConfig config;
     private int[] xValues = {-3, -2, -1, 0, 1, 2, 3, 4, 5};
-    private double[] rValues = {1, 1.5, 2, 2.5, 3};
-    private static final String SESSION_KEY = "points";
+    private double[] rValues = {0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5.5, 6, 6.5, 7.5, 8, 8.5, 9, 9.5, 10};
 
     private PointsTableBean bean;
 
     @Override
-    public void init (ServletConfig config) {
+    public void init(ServletConfig config) {
         this.config = config;
     }
 
@@ -40,70 +36,69 @@ public class AreaCheckServlet extends HttpServlet {
         return config;
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-            bean = (PointsTableBean) request.getSession().getAttribute("myBean");
+        bean = (PointsTableBean) request.getSession().getAttribute("sessionBean");
 
-            if (bean == null) {
-                bean = new PointsTableBean();
-                request.getSession().setAttribute("myBean", bean);
+
+        if (bean == null) {
+            bean = new PointsTableBean();
+            request.getSession().setAttribute("sessionBean", bean);
+        }
+
+        String reset = request.getParameter("reset");
+
+        boolean load = request.getParameter("load").equals("1");
+
+        if (!load) {
+            try {
+                int x = Integer.parseInt(request.getParameter("x_h").trim());
+                double y = Double.parseDouble(request.getParameter("y_h"));
+                double r = Double.parseDouble(request.getParameter("r_h"));
+
+                Point p = null;
+
+                if (validate(x, y, r))
+                    p = new Point(x, y, r, bean.getN());
+
+                bean.addPoint(p);
+            } catch (Exception e) {
+                //throw e;
+                request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
+        }
 
-            boolean load = request.getParameter("load").equals("1");
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
 
-            if (!load) {
-                try {
-                    int x = Integer.parseInt(request.getParameter("x_h"));
-                    double y = Double.parseDouble(request.getParameter("y_h"));
-                    double r = Double.parseDouble(request.getParameter("r_h"));
+        StringBuilder htmlResponse = new StringBuilder();
 
-                    Point p = null;
+        htmlResponse.append("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "\t<title>Результат проверки</title>\n" +
+                "  \t<meta charset=\"utf-8\">\n" +
+                "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler_style.css\">\n" +
+                "</head>\n" +
+                "<body>");
 
-                    if (validate(x, y, r))
-                        p = new Point(x, y, r, bean.getN());
-
-                    bean.addPoint(p);
-                } catch (Exception e) {
-                    throw e;
-                    //request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-                }
-            }
-
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-
-            StringBuilder htmlResponse = new StringBuilder();
-
-            htmlResponse.append("<!DOCTYPE html>\n" +
+        if (formTable(htmlResponse, reset)) {
+            htmlResponse.append("</body> </html>");
+            out.println(htmlResponse);
+        } else {
+            out.println(("<!DOCTYPE html>\n" +
                     "<html>\n" +
                     "<head>\n" +
-                    "\t<title>Результат проверки</title>\n" +
+                    "\t<title>Тупо бан</title>\n" +
                     "  \t<meta charset=\"utf-8\">\n" +
                     "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler_style.css\">\n" +
                     "</head>\n" +
-                    "<body>");
-
-            if (formTable(htmlResponse)) {
-                htmlResponse.append("</body> </html>");
-                out.println(htmlResponse);
-            } else
-                out.println(("<!DOCTYPE html>\n" +
-                        "<html>\n" +
-                        "<head>\n" +
-                        "\t<title>Тупо бан</title>\n" +
-                        "  \t<meta charset=\"utf-8\">\n" +
-                        "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler_style.css\">\n" +
-                        "</head>\n" +
-                        "<body>" +
-                        "<img src=\"./img/ban.png\">" +
-                        "<script>" +
-                        "parent.ban();" +
-                        "</script>" +
-                        "</body> </html>"));
-
-        } catch (Exception e) {
-            throw e;
+                    "<body>" +
+                    "<img src=\"./img/ban.png\">" +
+                    "<script>" +
+                    "parent.ban();" +
+                    "</script>" +
+                    "</body> </html>"));
         }
 
     }
@@ -119,7 +114,8 @@ public class AreaCheckServlet extends HttpServlet {
         return checkX && checkY && checkR;
     }
 
-    private boolean formTable(StringBuilder htmlResponse) {
+    @SuppressWarnings("unchecked")
+    private boolean formTable(StringBuilder htmlResponse, String reset) {
         htmlResponse.append("<table class=\"results\">");
         htmlResponse.append("<tr> <th>N</th> <th>X</th> <th>Y</th> <th>R</th> <th><b>Результат</b></th> <th>Показать </th> </tr>");
 
@@ -129,20 +125,20 @@ public class AreaCheckServlet extends HttpServlet {
             list.remove(0);
         }
 
+        if (reset != null && reset.equals("true"))
+            while (list.size() > 0)
+                list.remove(0);
+
         List<Point> reversed = new ArrayList<>(list);
         Collections.reverse(reversed);
 
-        for (int i = 0; i < reversed.size(); i++) {
-
-            Point point = reversed.get(i);
-
+        for (Point point : reversed) {
             if (point != null) {
                 htmlResponse.append(point);
             } else {
                 //htmlResponse.append("<tr> <td colspan='6'><b>Неверные аргументы</b></td> </tr>");
                 return false;
             }
-
         }
 
         htmlResponse.append("</table>");
