@@ -12,6 +12,15 @@
         <servlet-name>ControllerServlet</servlet-name>
         <url-pattern>/control</url-pattern>
     </servlet-mapping>
+    
+    <filter>
+        <filter-name>filter</filter-name>
+        <filter-class>Lab_2.AreaCheckFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filter</filter-name>
+        <url-pattern>/check</url-pattern>
+    </filter-mapping>
 
     <servlet>
         <servlet-name>AreaCheckServlet</servlet-name>
