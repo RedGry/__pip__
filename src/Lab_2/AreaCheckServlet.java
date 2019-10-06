@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,14 +35,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        bean = (PointsTableBean) request.getSession().getAttribute("sessionBean");
-
-
-        if (bean == null) {
-            bean = new PointsTableBean();
-            request.getSession().setAttribute("sessionBean", bean);
-        }
-
+        bean = (PointsTableBean) request.getSession().getAttribute("pointsBean");
 
         String reset = request.getParameter("reset");
 
@@ -98,7 +90,7 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     @SuppressWarnings("unchecked")
-    private boolean formTable(StringBuilder htmlResponse, String reset) {
+    private void formTable(StringBuilder htmlResponse, String reset) {
         htmlResponse.append("<table class=\"results\">");
         htmlResponse.append("<tr> <th>N</th> <th>X</th> <th>Y</th> <th>R</th> <th><b>Результат</b></th> <th>Показать </th> </tr>");
 
@@ -119,13 +111,11 @@ public class AreaCheckServlet extends HttpServlet {
             if (point != null) {
                 htmlResponse.append(point);
             } else {
-                //htmlResponse.append("<tr> <td colspan='6'><b>Неверные аргументы</b></td> </tr>");
-                return false;
+                htmlResponse.append("<tr> <td colspan='6'><b>Неверные аргументы</b></td> </tr>");
             }
         }
 
         htmlResponse.append("</table>");
-        return true;
     }
 
 }

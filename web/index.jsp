@@ -1,8 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"
-        language="java" import="java.util.List, java.util.ArrayList, Lab_2.AreaCheckServlet"
-        session="true"
-
-%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <head>
@@ -12,6 +8,7 @@
     <script type="text/javascript"> <%@include file='./js/mainFunctions.js' %> </script>
 </head>
 <body onload="init()">
+<jsp:useBean id="pointsBean" class="Lab_2.PointsTableBean" scope="session"/>
 <header>
     <h1>Проверка попадания точки в график</h1>
     Савин Георгий Евгеньевич P3202

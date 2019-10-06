@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class PointsTableBean implements Serializable {
+public class PointsTableBean implements Serializable {
 
     private int n = 1;
     private List<Point> points;
 
-    PointsTableBean() {
+    public PointsTableBean() {
         points = new ArrayList<>();
     }
 
