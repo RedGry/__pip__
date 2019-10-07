@@ -72,7 +72,8 @@ public class AreaCheckServlet extends HttpServlet {
                 "<head>\n" +
                 "\t<title>Результат проверки</title>\n" +
                 "  \t<meta charset=\"utf-8\">\n" +
-                "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler_style.css\">\n" +
+                "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
+                "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
                 "</head>\n" +
                 "<body>");
 
@@ -91,7 +92,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     @SuppressWarnings("unchecked")
     private void formTable(StringBuilder htmlResponse, String reset) {
-        htmlResponse.append("<table class=\"results\">");
+        htmlResponse.append("<table class=\"results block\">");
         htmlResponse.append("<tr> <th>N</th> <th>X</th> <th>Y</th> <th>R</th> <th><b>Результат</b></th> <th>Показать </th> </tr>");
 
         List<Point> list = bean.getPoints();

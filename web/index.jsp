@@ -4,19 +4,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Lab2-Web</title>
-    <style> <%@include file='css/main.css' %> </style>
+<%--    <style> <%@include file='css/main.css' %> </style>--%>
+    <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript"> <%@include file='./js/mainFunctions.js' %> </script>
 </head>
-<body onload="init()">
+<body areYouLoveAnime="true" onload="init()">
 <jsp:useBean id="pointsBean" class="Lab_2.PointsTableBean" scope="session"/>
-<header>
-    <h1>Проверка попадания точки в график</h1>
-    Савин Георгий Евгеньевич P3202
-    <br>Вариант - 813992
-</header>
-<div class="container">
-    <div class="form">
-
+    <div class="block">
+        Agababyan_Karlen & Gosha_Sawin<br>
+        Group: P3202; Option: 202000/813992<br>
+        <a href="//github.com/SunnyCapt/Lab2-Web">Source of AK</a>/<a href="//github.com/DeltaThreeEight/Lab2-Web">Source of GS</a>
+    </div>
+    <div class="block">
         <p>X координата:
             <output name="x_output" id="x_out" class="output">0</output>
         </p>
@@ -69,18 +68,12 @@
 
             <p><input type="submit" value="Проверить" onclick="markPoint(x_out.value, y_out.value, r_out.value)"></p>
         </form>
-
+        <div class="graphic">
+            <canvas id="canvas" onclick="clickCanvas(r_out.value)" width="300" height="300" ></canvas>
+        </div>
     </div>
-
-    <div class="graphic">
-        <canvas id="canvas" onclick="clickCanvas(r_out.value)" width="300" height="300" ></canvas>
+    <div class="block">
+        <iframe style="width: 100%" name="result"></iframe>
     </div>
-
-
-</div>
-
-<div>
-    <iframe class="result" name="result"></iframe>
-</div>
-
+    <img src="img/iwannasleep.gif" id="iwannasleep">
 </body>

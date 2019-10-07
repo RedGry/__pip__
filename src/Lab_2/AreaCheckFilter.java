@@ -29,15 +29,16 @@ public class AreaCheckFilter implements Filter {
             out.println(("<!DOCTYPE html>\n" +
                     "<html>\n" +
                     "<head>\n" +
-                    "\t<title>Тупо бан</title>\n" +
-                    "  \t<meta charset=\"utf-8\">\n" +
-                    "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler_style.css\">\n" +
+                        "\t<title>Тупо бан</title>\n" +
+                        "\t<meta charset=\"utf-8\">\n" +
+                        "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
+                        "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
                     "</head>\n" +
                     "<body>" +
-                    "<img src=\"./img/ban.png\">" +
-                    "<script>" +
-                    "parent.ban();" +
-                    "</script>" +
+                        "<img src=\"./img/ban.png\">" +
+                        "<script>" +
+                            "parent.ban();" +
+                        "</script>" +
                     "</body> </html>"));
         }
 

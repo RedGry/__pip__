@@ -57,7 +57,7 @@ function egg() {
         context = canvas.getContext("2d");
     let img = new Image();
 
-    img.src = "./img/1.jpg";
+    img.src = "./img/angryMushroom.jpg";
 
     context.drawImage(img, 25, 97);
 

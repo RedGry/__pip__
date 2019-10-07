@@ -1,183 +1,183 @@
-.form {
-	margin: 0 auto;
-	width: 200px;
-	padding: 5px 20px 5px 5px;
-	float: left;
-}
+/*.form {*/
+/*	margin: 0 auto;*/
+/*	width: 200px;*/
+/*	padding: 5px 20px 5px 5px;*/
+/*	float: left;*/
+/*}*/
 
-#canvas {
-	background-color:#ffffff;
-	border-radius: 15px;
-}
+/*#canvas {*/
+/*	background-color:#ffffff;*/
+/*	border-radius: 15px;*/
+/*}*/
 
-table {
-	margin: 0 auto;
-}
+/*table {*/
+/*	margin: 0 auto;*/
+/*}*/
 
-[type=button] {
-	border-radius: 5px;
-	outline: none;
-}
+/*[type=button] {*/
+/*	border-radius: 5px;*/
+/*	outline: none;*/
+/*}*/
 
-input {
-	outline: none;
-	border-radius: 10px;
-	border: 1px solid #ccc;
-	padding: 3px 5px;
-	margin: 1px;
-}
-input:focus {
-	border-color: #fc0;
-}
+/*input {*/
+/*	outline: none;*/
+/*	border-radius: 10px;*/
+/*	border: 1px solid #ccc;*/
+/*	padding: 3px 5px;*/
+/*	margin: 1px;*/
+/*}*/
+/*input:focus {*/
+/*	border-color: #fc0;*/
+/*}*/
 
-.graphic {
-	width: 290px;
-	padding: 20px 20px 5px 5px;
-	float: right;
-}
+/*.graphic {*/
+/*	width: 290px;*/
+/*	padding: 20px 20px 5px 5px;*/
+/*	float: right;*/
+/*}*/
 
-#mushroom {
-	width: 30px;
-	height: 30px;
-}
+/*#mushroom {*/
+/*	width: 30px;*/
+/*	height: 30px;*/
+/*}*/
 
-.result {
-	width: 600px; 
-	height: 222px;
-    background: #FFFACD;
-	padding: 5px 20px 5px 5px;
-	border-radius: 13px;
-	font-family: Arial, Helvetica, sans-serif;
-}
+/*.result {*/
+/*	width: 600px; */
+/*	height: 222px;*/
+/*    background: #FFFACD;*/
+/*	padding: 5px 20px 5px 5px;*/
+/*	border-radius: 13px;*/
+/*	font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
 
-#y_in:focus{
-	background: #E0FFFF;
-}
+/*#y_in:focus{*/
+/*	background: #E0FFFF;*/
+/*}*/
 
-.container {
-	margin: 0 auto;
-	width: 600px; 
-	height: 360px;
-    background: #FFFACD;
-	padding: 5px 20px 5px 5px;
-	border-radius: 13px;
-	border-bottom: solid 5px #FF7F50;
-}
+/*.container {*/
+/*	margin: 0 auto;*/
+/*	width: 600px; */
+/*	height: 360px;*/
+/*    background: #FFFACD;*/
+/*	padding: 5px 20px 5px 5px;*/
+/*	border-radius: 13px;*/
+/*	border-bottom: solid 5px #FF7F50;*/
+/*}*/
 
-.output {
-	color: #087e09;
-}
+/*.output {*/
+/*	color: #087e09;*/
+/*}*/
 
-body {
-	text-align: center;
-	background-color: #FF8C00;
-	font-family: Arial, Helvetica, sans-serif;
-}
+/*body {*/
+/*	text-align: center;*/
+/*	background-color: #FF8C00;*/
+/*	font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
 
-.rb:hover::after {
-	content: attr(my-title);
-	position: relative;
-	left: 100%;
-	right: 100%;
-	bottom: 100%;
-	z-index: 1;
-	background: rgba(47, 47, 47, 0.9);
-	font-size: 14px;
-	padding: 1px 1px;
-	color: #fff;
-}
+/*.rb:hover::after {*/
+/*	content: attr(my-title);*/
+/*	position: relative;*/
+/*	left: 100%;*/
+/*	right: 100%;*/
+/*	bottom: 100%;*/
+/*	z-index: 1;*/
+/*	background: rgba(47, 47, 47, 0.9);*/
+/*	font-size: 14px;*/
+/*	padding: 1px 1px;*/
+/*	color: #fff;*/
+/*}*/
 
-header {
-	margin: 0 auto;
-	width: 600px; 
-	height: 120px;
-    background: #FFFACD;
-	padding: 5px 20px 15px 5px;
-	font-family: Arial, Helvetica, sans-serif;
-	color: black;
-	font-size: 103%;
-	border-bottom: solid 5px #FF7F50;
-	border-radius: 13px;
-}
+/*header {*/
+/*	margin: 0 auto;*/
+/*	width: 600px; */
+/*	height: 120px;*/
+/*    background: #FFFACD;*/
+/*	padding: 5px 20px 15px 5px;*/
+/*	font-family: Arial, Helvetica, sans-serif;*/
+/*	color: black;*/
+/*	font-size: 103%;*/
+/*	border-bottom: solid 5px #FF7F50;*/
+/*	border-radius: 13px;*/
+/*}*/
 
-h1 { color: #000080; font-weight: normal; }
+/*h1 { color: #000080; font-weight: normal; }*/
 
-.tooltip { /* стиль текста, наведя или нажав на который появится пояснение */
-	display: inline-block;
-	position: relative;
-	text-indent: 0;
-	background: #FFFACD;
-}
-.tooltip > span { /* стиль появляющейся подсказки */
-	position: absolute;
-	left: -20em; /* = max-width */
-	right: -20em; /* = max-width */
-	width: -moz-max-content;
-	width: max-content;  /* ширина подсказки может быть не более содержимого */
-	max-width: 30vh;  /* ширина подсказки может быть не более 20em */
-	max-height: 80vh; /* необязательное ограничение по высоте подсказки, 1vh — это 1% от ширины окна */
-	overflow: auto;
-	visibility: hidden;
-	margin: 0 auto .4em; /* поднята на .4em над текстом, наведя или нажав на который появится пояснение */
-	padding: .3em;
-	border: solid rgb(200,200,200);
-	font-size: 90%;
-	background: #fff;
-	line-height: normal;
-	cursor: auto;
-}
+/*.tooltip { !* стиль текста, наведя или нажав на который появится пояснение *!*/
+/*	display: inline-block;*/
+/*	position: relative;*/
+/*	text-indent: 0;*/
+/*	background: #FFFACD;*/
+/*}*/
+/*.tooltip > span { !* стиль появляющейся подсказки *!*/
+/*	position: absolute;*/
+/*	left: -20em; !* = max-width *!*/
+/*	right: -20em; !* = max-width *!*/
+/*	width: -moz-max-content;*/
+/*	width: max-content;  !* ширина подсказки может быть не более содержимого *!*/
+/*	max-width: 30vh;  !* ширина подсказки может быть не более 20em *!*/
+/*	max-height: 80vh; !* необязательное ограничение по высоте подсказки, 1vh — это 1% от ширины окна *!*/
+/*	overflow: auto;*/
+/*	visibility: hidden;*/
+/*	margin: 0 auto .4em; !* поднята на .4em над текстом, наведя или нажав на который появится пояснение *!*/
+/*	padding: .3em;*/
+/*	border: solid rgb(200,200,200);*/
+/*	font-size: 90%;*/
+/*	background: #fff;*/
+/*	line-height: normal;*/
+/*	cursor: auto;*/
+/*}*/
 
-.tooltip > span {
-	left: 48%;
-	bottom: 0%;
-}
+/*.tooltip > span {*/
+/*	left: 48%;*/
+/*	bottom: 0%;*/
+/*}*/
 
-.tooltip.left > span { /* начинается от левого края */
-	left: 0;
-	right: -20em;
-	margin: 0 0 .4em;
-}
-.tooltip.right > span { /* начинается от правого края */
-	left: -20em;
-	right: 0;
-	margin: 0 0 .4em auto;
-}
-/*.tooltip:after { !* треугольничек под подсказкой; тут тоже везде .4em *!
-	content: "";
-	position: absolute;
-	top: -.01em;
-	left: 100%;
-	visibility: hidden;
-	margin: 0 0 0 -.4em;
-	border: .4em solid;
-	border-color: rgb(200,200,200) transparent transparent transparent;
-	cursor: auto;
-}*/
-.tooltip.left:after {
-	left: 1em;
-}
-.tooltip.right:after {
-	left: auto;
-	right: .6em; /* 1em - .4em */
-}
-.tooltip:before { /* поле между текстом, наведя или нажав на который появится пояснение, и подсказкой нужно чтобы, если перевести курсор мышки на подсказку, та не исчезла; тут тоже везде .4em */
-	content: "";
-	position: absolute;
-	top: -.4em;
-	left: 0;
-	right: 0;
-	height: .4em;
-	visibility: hidden;
-}
-.tooltip:hover > span,
-.tooltip:hover:before,
-.tooltip:hover:after,
-.tooltip:focus > span,
-.tooltip:focus:before,
-.tooltip:focus:after {
-	visibility: visible;
-	transition: 0s .3s;
-}
-.tooltip:focus { /* убрать рамку в Хроме */
-	outline: none;
-}
+/*.tooltip.left > span { !* начинается от левого края *!*/
+/*	left: 0;*/
+/*	right: -20em;*/
+/*	margin: 0 0 .4em;*/
+/*}*/
+/*.tooltip.right > span { !* начинается от правого края *!*/
+/*	left: -20em;*/
+/*	right: 0;*/
+/*	margin: 0 0 .4em auto;*/
+/*}*/
+/*!*.tooltip:after { !* треугольничек под подсказкой; тут тоже везде .4em *!*/
+/*	content: "";*/
+/*	position: absolute;*/
+/*	top: -.01em;*/
+/*	left: 100%;*/
+/*	visibility: hidden;*/
+/*	margin: 0 0 0 -.4em;*/
+/*	border: .4em solid;*/
+/*	border-color: rgb(200,200,200) transparent transparent transparent;*/
+/*	cursor: auto;*/
+/*}*!*/
+/*.tooltip.left:after {*/
+/*	left: 1em;*/
+/*}*/
+/*.tooltip.right:after {*/
+/*	left: auto;*/
+/*	right: .6em; !* 1em - .4em *!*/
+/*}*/
+/*.tooltip:before { !* поле между текстом, наведя или нажав на который появится пояснение, и подсказкой нужно чтобы, если перевести курсор мышки на подсказку, та не исчезла; тут тоже везде .4em *!*/
+/*	content: "";*/
+/*	position: absolute;*/
+/*	top: -.4em;*/
+/*	left: 0;*/
+/*	right: 0;*/
+/*	height: .4em;*/
+/*	visibility: hidden;*/
+/*}*/
+/*.tooltip:hover > span,*/
+/*.tooltip:hover:before,*/
+/*.tooltip:hover:after,*/
+/*.tooltip:focus > span,*/
+/*.tooltip:focus:before,*/
+/*.tooltip:focus:after {*/
+/*	visibility: visible;*/
+/*	transition: 0s .3s;*/
+/*}*/
+/*.tooltip:focus { !* убрать рамку в Хроме *!*/
+/*	outline: none;*/
+/*}*/

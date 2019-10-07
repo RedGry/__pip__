@@ -1,0 +1,37 @@
+.block {
+    width: 70%;
+    text-align: center;
+    box-shadow: black 0 5px 10px;
+    background-color: black;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 6px;
+    font-size: 16px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.main-text {
+    font-size: 20px;
+    font-family: Times, "Times New Roman", serif;
+    font-weight: normal;
+    clear: both;
+}
+a {
+    text-decoration: none;
+    color: #d2738a;
+}
+body[areYouLoveAnime="true"] {
+    background-image: url(../img/bg.gif);
+}
+* {
+    color: #c1b492;
+}
+#iwannasleep {
+    position: fixed;
+    bottom: -1px;
+    left: -1px;
+    width: 242px;
+    height: 175px;
+    margin-left: -1px;
+}
