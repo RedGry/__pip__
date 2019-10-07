@@ -35,3 +35,7 @@ body[areYouLoveAnime="true"] {
     height: 175px;
     margin-left: -1px;
 }
+#ban{
+    margin-left: auto;
+    margin-right: auto;
+}

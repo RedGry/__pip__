@@ -34,11 +34,14 @@ public class AreaCheckFilter implements Filter {
                         "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
                         "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
                     "</head>\n" +
-                    "<body>" +
-                        "<img src=\"./img/ban.png\">" +
-                        "<script>" +
-                            "parent.ban();" +
-                        "</script>" +
+                    "<body style=\"text-align: center; background-color: black; background-image: none;\">" +
+                        "<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>" +
+                        "<div id=\"ban\">" +
+                            "<img src=\"./img/eyes.gif\">" +
+                            "<script>" +
+                                "parent.ban();" +
+                            "</script>" +
+                        "</div>" +
                     "</body> </html>"));
         }
 

@@ -49,7 +49,12 @@ function markPoint(x, y, r) {
 }
 
 function ban() {
-    document.body.innerHTML="<img src=\"./img/ban.png\">";
+    document.body.style.textAlign = 'center';
+    document.body.style.backgroundColor = 'black';
+    document.body.innerHTML='<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>' +
+        '<div id=\"ban\">' +
+        '<img src=\"./img/eyes.gif\">' +
+        '</div>';
 }
 
 function egg() {
