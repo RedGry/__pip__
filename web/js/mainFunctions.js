@@ -19,14 +19,24 @@ function clickCanvas(R) {
     let x = event.clientX-left;
     let y = event.clientY-top;
 
-    markPoint((x-150)/130*R, (-y+150)/130*R, R);
+    markPointFromServer((x-150)/130*R, (-y+150)/130*R, R);
 }
 
-function markPoint(x, y, r) {
-    console.log('Marking point ' + x + ', ' + y + ', ' + r);
+async function markPointFromServer(x, y, r) {
+    let response = await fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'text/plain;charset=UTF-8'
+        }
+    });
+    let hit = await response.text();
+    markPoint(x, y, r, hit);
+}
+
+function markPoint(x, y, r, hit) {
+    console.log('Marking point ' + x + ', ' + y + ', ' + r + ', ' + hit);
     createGraphic('canvas', r);
     let canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
-
 
     context.beginPath();
     context.rect(Math.round(150 + ((x / r) * 130))-3, Math.round(150 - ((y / r) * 130))-3, 6, 6);
@@ -34,12 +44,13 @@ function markPoint(x, y, r) {
     context.strokeStyle = 'black';
 
     let color = 'red';
+    hit = hit.toString();
 
-    let triangle = (y >= 0 && x <= 0 && Number(y) <= (Number(x) + Number(r)) && x >= -r);
-    let square = (x >= (-r) && y >= (-r) && y <= 0 && x <= 0);
-    let circle = ((Math.pow(x, 2) + Math.pow(y, 2) <= (Math.pow(r / 2, 2))) && y >= 0 && x >= 0);
+    // let triangle = (y >= 0 && x <= 0 && Number(y) <= (Number(x) + Number(r)) && x >= -r);
+    // let square = (x >= (-r) && y >= (-r) && y <= 0 && x <= 0);
+    // let circle = ((Math.pow(x, 2) + Math.pow(y, 2) <= (Math.pow(r / 2, 2))) && y >= 0 && x >= 0);
 
-    if (triangle || square || circle) {
+    if (hit.trim() === "true") {
         color = 'lime';
     }
 

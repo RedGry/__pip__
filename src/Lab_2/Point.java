@@ -34,7 +34,7 @@ public class Point implements Serializable {
                         " <td>%s</td>" +
                         " <td>%s</td>" +
                         " <td><b>%s</b></td>" +
-                        "  <td><button onclick='parent.markPoint(%s, %s, %s)'>+</button></td></tr>",
-                n, x, y, R, res, x, y, R);
+                        "  <td><button onclick='parent.markPoint(%s, %s, %s, %s)'>+</button></td></tr>",
+                n, x, y, R, res, x, y, R, hit);
     }
 }
