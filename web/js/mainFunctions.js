@@ -46,10 +46,6 @@ function markPoint(x, y, r, hit) {
     let color = 'red';
     hit = hit.toString();
 
-    // let triangle = (y >= 0 && x <= 0 && Number(y) <= (Number(x) + Number(r)) && x >= -r);
-    // let square = (x >= (-r) && y >= (-r) && y <= 0 && x <= 0);
-    // let circle = ((Math.pow(x, 2) + Math.pow(y, 2) <= (Math.pow(r / 2, 2))) && y >= 0 && x >= 0);
-
     if (hit.trim() === "true") {
         color = 'lime';
     }

@@ -85,10 +85,6 @@ public class AreaCheckServlet extends HttpServlet {
 
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("control");
-    }
-
     @SuppressWarnings("unchecked")
     private void formTable(StringBuilder htmlResponse, String reset) {
         htmlResponse.append("<table class=\"results\">");

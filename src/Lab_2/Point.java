@@ -17,7 +17,7 @@ public class Point implements Serializable {
         hit = checkArea(x, y, R);
     }
 
-    private boolean checkArea(int x, double y, double r){
+    public static boolean checkArea(double x, double y, double r){
 
         boolean circle = ((Math.pow(x, 2) + Math.pow(y, 2) <= (Math.pow(r / 2, 2))) && y >= 0 && x >= 0);
         boolean square = (x >= (-r) && y >= (-r) && y <= 0 && x <= 0);

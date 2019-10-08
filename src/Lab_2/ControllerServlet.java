@@ -9,11 +9,6 @@ import java.io.IOException;
 
 public class ControllerServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-     throws ServletException, IOException {
-		request.getServletContext().getRequestDispatcher("index.jsp").forward(request, response);
-    }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
