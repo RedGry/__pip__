@@ -1,28 +1,42 @@
+// TODO: find and fix hardcode(default sending request)
+
 function init() {
     createGraphic('canvas', r_out.value);
 
-    document.getElementsByTagName('form')[0].submit();
+    // document.getElementsByTagName('form')[0].submit();
 
-    let loadValue = document.getElementById('load');
-    loadValue.value = 0;
+    // let loadValue = document.getElementById('load');
+    // loadValue.value = 0;
+}
+
+function error(message) {
+    alert(message);
 }
 
 function clickCanvas(R) {
     console.log("Click on canvas");
     let canvas = document.getElementById("canvas");
 
+    if (canvas.is_default_graphic){
+        console.log('error: R is not set');
+        error('You did not set MANDATORY value of R!');
+        return;
+
+    }
+
     let br = canvas.getBoundingClientRect();
     let left = br.left;
     let top = br.top;
 
     let event = window.event;
-    let x = event.clientX-left;
-    let y = event.clientY-top;
+    let x = event.clientX - left;
+    let y = event.clientY - top;
 
-    markPointFromServer((x-150)/130*R, (-y+150)/130*R, R);
+    markPointFromServer((x - 150) / 130 * R, (-y + 150) / 130 * R, R);
 }
 
 async function markPointFromServer(x, y, r) {
+    console.log('here1');
     let response = await fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
         method: 'GET',
         headers: {
@@ -39,7 +53,7 @@ function markPoint(x, y, r, hit) {
     let canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
 
     context.beginPath();
-    context.rect(Math.round(150 + ((x / r) * 130))-3, Math.round(150 - ((y / r) * 130))-3, 6, 6);
+    context.rect(Math.round(150 + ((x / r) * 130)) - 3, Math.round(150 - ((y / r) * 130)) - 3, 6, 6);
     context.closePath();
     context.strokeStyle = 'black';
 
@@ -58,8 +72,11 @@ function markPoint(x, y, r, hit) {
 function ban() {
     document.body.style.textAlign = 'center';
     document.body.style.backgroundColor = 'black';
-    document.body.innerHTML='<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>' +
-        '<div id=\"ban\">' +
+    let tmp = document.createElement('div');
+    tmp.innerHTML = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+    document.head.append(tmp.children[0]);
+    document.body.innerHTML = '<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>' +
+        '<div class=\"centered\">' +
         '<img src=\"./img/eyes.gif\">' +
         '</div>';
 }
@@ -77,12 +94,12 @@ function egg() {
     let vx = 0;
     let vy = 0;
 
-    let int = setInterval(function(){
-        vx = Math.cos(currentAngle)*100 - 100;
+    let int = setInterval(function () {
+        vx = Math.cos(currentAngle) * 100 - 100;
 
         // считаем синус текущего значения угла
         // и умножаем на значение радиуса
-        vy = Math.sin(currentAngle)*100;
+        vy = Math.sin(currentAngle) * 100;
 
         createGraphic("canvas", 1);
         context.drawImage(img, 25 - vx, 97 - vy);
@@ -95,79 +112,102 @@ function egg() {
 }
 
 function createGraphic(id, r) {
-
+    let is_default_graphic = false;
+    if (r === 0 || r === '_') {
+        is_default_graphic = true;
+        r = 1;
+    }
     let canvas = document.getElementById(id), context = canvas.getContext("2d");
+    canvas.is_default_graphic = is_default_graphic;
     //очистка
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (r != 0) {
+    //прямоугольник
+    context.beginPath();
+    context.rect(20, 150, 130, 130);
+    context.closePath();
+    context.strokeStyle = "#2f9aff";
+    context.fillStyle = "#2f9aff";
+    context.fill();
+    context.stroke();
 
-        //прямоугольник
-        context.beginPath();
-        context.rect(20, 150, 130, 130);
-        context.closePath();
-        context.strokeStyle = "#2f9aff";
-        context.fillStyle = "#2f9aff";
-        context.fill();
-        context.stroke();
+    // сектор
+    context.beginPath();
+    context.moveTo(150, 150);
+    context.arc(150, 150, 65, -Math.PI / 2, 0, false);
+    context.closePath();
+    context.strokeStyle = "#2f9aff";
+    context.fillStyle = "#2f9aff";
+    context.fill();
+    context.stroke();
 
-        // сектор
-        context.beginPath();
-        context.moveTo(150, 150);
-        context.arc(150, 150, 65, -Math.PI / 2, 0, false);
-        context.closePath();
-        context.strokeStyle = "#2f9aff";
-        context.fillStyle = "#2f9aff";
-        context.fill();
-        context.stroke();
-
-        //треугольник
-        context.beginPath();
-        context.moveTo(150, 150);
-        context.lineTo(20, 150);
-        context.lineTo(150, 20);
-        context.lineTo(150, 150);
-        context.closePath();
-        context.strokeStyle = "#2f9aff";
-        context.fillStyle = "#2f9aff";
-        context.fill();
-        context.stroke();
-
-    }
+    //треугольник
+    context.beginPath();
+    context.moveTo(150, 150);
+    context.lineTo(20, 150);
+    context.lineTo(150, 20);
+    context.lineTo(150, 150);
+    context.closePath();
+    context.strokeStyle = "#2f9aff";
+    context.fillStyle = "#2f9aff";
+    context.fill();
+    context.stroke();
 
     //отрисовка осей
     context.beginPath();
     context.font = "10px Verdana";
     context.strokeStyle = "black";
     context.fillStyle = "black";
-    context.moveTo(150, 0); context.lineTo(150, 300);
-    context.moveTo(150, 0); context.lineTo(145, 15);
-    context.moveTo(150, 0); context.lineTo(155, 15);
+    context.moveTo(150, 0);
+    context.lineTo(150, 300);
+    context.moveTo(150, 0);
+    context.lineTo(145, 15);
+    context.moveTo(150, 0);
+    context.lineTo(155, 15);
     context.fillText("Y", 160, 10);
-    context.moveTo(0, 150); context.lineTo(300, 150);
-    context.moveTo(300, 150); context.lineTo(285, 145);
-    context.moveTo(300, 150); context.lineTo(285, 155);
+    context.moveTo(0, 150);
+    context.lineTo(300, 150);
+    context.moveTo(300, 150);
+    context.lineTo(285, 145);
+    context.moveTo(300, 150);
+    context.lineTo(285, 155);
     context.fillText("X", 290, 130);
 
     // деления Y
-    context.moveTo(145, 20); context.lineTo(155, 20); context.fillText(String(r), 160, 20);
-    context.moveTo(145, 85); context.lineTo(155, 85); context.fillText(String(r / 2), 160, 78);
-    context.moveTo(145, 215); context.lineTo(155, 215); context.fillText(String(-(r / 2)), 160, 215);
-    context.moveTo(145, 280); context.lineTo(155, 280); context.fillText(String(-r), 160, 280);
+    context.moveTo(145, 20);
+    context.lineTo(155, 20);
+    context.fillText(is_default_graphic ? 'R' : String(r), 160, 20);
+    context.moveTo(145, 85);
+    context.lineTo(155, 85);
+    context.fillText(is_default_graphic ? 'R/2' : String(r / 2), 160, 78);
+    context.moveTo(145, 215);
+    context.lineTo(155, 215);
+    context.fillText(is_default_graphic ? '-R/2' : String(-(r / 2)), 160, 215);
+    context.moveTo(145, 280);
+    context.lineTo(155, 280);
+    context.fillText(is_default_graphic ? '-R' : String(-r), 160, 280);
     // деления X
-    context.moveTo(20, 145); context.lineTo(20, 155); context.fillText(String(-r), 15, 140);
-    context.moveTo(85, 145); context.lineTo(85, 155); context.fillText(String(-(r / 2)), 70, 140);
-    context.moveTo(215, 145); context.lineTo(215, 155); context.fillText(String(r / 2), 215, 140);
-    context.moveTo(280, 145); context.lineTo(280, 155); context.fillText(String(r), 280, 140);
+    context.moveTo(20, 145);
+    context.lineTo(20, 155);
+    context.fillText(is_default_graphic ? '-R' : String(-r), 15, 140);
+    context.moveTo(85, 145);
+    context.lineTo(85, 155);
+    context.fillText(is_default_graphic ? '-R/2' : String(-(r / 2)), 70, 140);
+    context.moveTo(215, 145);
+    context.lineTo(215, 155);
+    context.fillText(is_default_graphic ? 'R/2' : String(r / 2), 215, 140);
+    context.moveTo(280, 145);
+    context.lineTo(280, 155);
+    context.fillText(is_default_graphic ? 'R' : String(r), 280, 140);
 
     context.closePath();
     context.strokeStyle = "black";
     context.fillStyle = "black";
     context.stroke();
-
 }
 
 let prev_y = 0;
+
 function setRadius(r) {
     let checked = document.getElementsByClassName('rb');
     r = 0;
@@ -177,15 +217,16 @@ function setRadius(r) {
         }
     }
 
-    console.log('setting radius: '+ r);
+    console.log('setting radius: ' + r);
 
     r_h_id.value = r;
-    r_out.value = r;
+    r_out.value = r > 0?r:'_';
     createGraphic('canvas', r);
 }
 
 let res = 0;
 let count = 0;
+
 function setX(x) {
     if (count < 2) {
         count++;

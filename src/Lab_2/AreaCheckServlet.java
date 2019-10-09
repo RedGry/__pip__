@@ -88,7 +88,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     @SuppressWarnings("unchecked")
     private void formTable(StringBuilder htmlResponse, String reset) {
-        htmlResponse.append("<table class=\"results block\">");
+        htmlResponse.append("<table class=\"results block centered\">");
         htmlResponse.append("<tr> <th>N</th> <th>X</th> <th>Y</th> <th>R</th> <th><b>Результат</b></th> <th>Показать </th> </tr>");
 
         List<Point> list = bean.getPoints();

@@ -30,13 +30,13 @@ public class AreaCheckFilter implements Filter {
                     "<html>\n" +
                     "<head>\n" +
                         "\t<title>Тупо бан</title>\n" +
-                        "\t<meta charset=\"utf-8\">\n" +
+                        "\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
                         "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
                         "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
                     "</head>\n" +
                     "<body style=\"text-align: center; background-color: black; background-image: none;\">" +
                         "<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>" +
-                        "<div id=\"ban\">" +
+                        "<div class=\"centered\">" +
                             "<img src=\"./img/eyes.gif\">" +
                             "<script>" +
                                 "parent.ban();" +
