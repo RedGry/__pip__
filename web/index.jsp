@@ -66,7 +66,7 @@
             <input type="hidden" name="y_h" id="y_h_id" value="0">
             <input type="hidden" name="load" id="load" value="1">
 
-            <p><input type="submit" value="Проверить" onclick="markPoint(x_out.value, y_out.value, r_out.value)"></p>
+            <p><input type="submit" value="Проверить" onclick="markPointFromServer(x_out.value, y_out.value, r_out.value)"></p>
         </form>
         <div class="graphic">
             <canvas id="canvas" onclick="clickCanvas(r_out.value)" width="300" height="300" ></canvas>

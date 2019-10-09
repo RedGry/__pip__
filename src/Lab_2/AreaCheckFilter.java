@@ -12,8 +12,8 @@ public class AreaCheckFilter implements Filter {
 
     public void init(FilterConfig arg0) {}
 
-    public void doFilter(ServletRequest req, ServletResponse resp,
-                         FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws IOException, ServletException {
 
         resp.setContentType("text/html; charset=UTF-8");
 
