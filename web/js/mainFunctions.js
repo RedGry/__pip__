@@ -19,7 +19,13 @@ function clickCanvas(R) {
 
     if (canvas.is_default_graphic){
         console.log('error: R is not set');
-        error('You did not set MANDATORY value of R!');
+        createGraphic('canvas', 0);
+        let canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
+        context.strokeStyle = "#000000";
+        context.fillStyle = "#ff0014";
+        context.font = '20px Arial';
+        context.fillText(  'You have to set ', 20, 50);
+        context.fillText(  'R parameter', 20, 70);
         return;
 
     }
