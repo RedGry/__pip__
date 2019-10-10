@@ -39,12 +39,12 @@ public class AreaCheckServlet extends HttpServlet {
 
         String reset = request.getParameter("reset");
 
-        boolean load = false;
+        boolean load;
 
         try {
             load = request.getParameter("load").equals("1");
         } catch (NullPointerException e) {
-            request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+            load = false;
         }
 
         if (!load) {
@@ -76,8 +76,8 @@ public class AreaCheckServlet extends HttpServlet {
                 "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
                 "</head>\n" +
                 "<body>");
-
-        formTable(htmlResponse, reset);
+        if (bean.getPoints().size() > 0)
+            formTable(htmlResponse, reset);
 
         htmlResponse.append("</body> </html>");
         out.println(htmlResponse);

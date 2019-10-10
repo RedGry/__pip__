@@ -13,35 +13,38 @@ public class AreaCheckFilter implements Filter {
     public void init(FilterConfig arg0) {}
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-            throws IOException, ServletException {
+            throws IOException {
 
         resp.setContentType("text/html; charset=UTF-8");
 
         PrintWriter out = resp.getWriter();
 
-        int x = Integer.parseInt(req.getParameter("x_h").trim());
-        double y = Double.parseDouble(req.getParameter("y_h"));
-        double r = Double.parseDouble(req.getParameter("r_h"));
+        try {
+            int x = Integer.parseInt(req.getParameter("x_h").trim());
+            double y = Double.parseDouble(req.getParameter("y_h"));
+            double r = Double.parseDouble(req.getParameter("r_h"));
 
-        if (validate(x, y, r))
-            chain.doFilter(req, resp);
-        else {
+            if (validate(x, y, r))
+                chain.doFilter(req, resp);
+            else
+                throw new Exception("validation failed");
+        } catch (Exception e) {
             out.println(("<!DOCTYPE html>\n" +
                     "<html>\n" +
                     "<head>\n" +
-                        "\t<title>Тупо бан</title>\n" +
-                        "\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
-                        "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
-                        "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
+                    "\t<title>Тупо бан</title>\n" +
+                    "\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
+                    "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
+                    "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
                     "</head>\n" +
                     "<body style=\"text-align: center; background-color: black; background-image: none;\">" +
-                        "<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>" +
-                        "<div class=\"centered\">" +
-                            "<img src=\"./img/eyes.gif\">" +
-                            "<script>" +
-                                "parent.ban();" +
-                            "</script>" +
-                        "</div>" +
+                    "<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>" +
+                    "<div class=\"centered\">" +
+                    "<img src=\"./img/eyes.gif\">" +
+                    "<script>" +
+                    "parent.ban();" +
+                    "</script>" +
+                    "</div>" +
                     "</body> </html>"));
         }
 
@@ -49,7 +52,7 @@ public class AreaCheckFilter implements Filter {
 
     private boolean validate(int x, double y, double r) {
         boolean checkX = Arrays.binarySearch(xValues, x) > -1;
-        boolean checkY = y >= -3 && y <= 5;
+        boolean checkY = y >= -5 && y <= 3;
         boolean checkR = Arrays.binarySearch(rValues, r) > -1;
         return checkX && checkY && checkR;
     }
