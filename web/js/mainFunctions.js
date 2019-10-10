@@ -4,7 +4,7 @@ function init() {
     createGraphic('canvas', r_out.value);
 
     // document.getElementsByTagName('form')[0].submit();
-
+    //
     // let loadValue = document.getElementById('load');
     // loadValue.value = 0;
 }
@@ -36,7 +36,6 @@ function clickCanvas(R) {
 }
 
 async function markPointFromServer(x, y, r) {
-    console.log('here1');
     let response = await fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
         method: 'GET',
         headers: {
