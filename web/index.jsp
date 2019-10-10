@@ -10,15 +10,15 @@
 </head>
 <body areYouLoveAnime="true" onload="init()">
 <jsp:useBean id="pointsBean" class="Lab_2.PointsTableBean" scope="session"/>
-<div class="block centered">
+<div class="block auto-margin">
     Agababyan_Karlen & Gosha_Sawin<br>
     Group: P3202; Option: 202000/813992<br>
     <a href="//github.com/SunnyCapt/Lab2-Web">Source of AK</a>/<a href="//github.com/DeltaThreeEight/Lab2-Web">Source of
     GS</a>
 </div>
-<div class="block centered">
-    <div id="input-fields" class="centered">
-        <div class="centered" id="xblock">
+<div class="block auto-margin flex">
+    <div class="centered">
+        <div class="auto-margin" id="xblock">
             <p>X:
                 <output name="x_output" id="x_out" class="output">0</output>
             </p>
@@ -41,7 +41,20 @@
                 </tr>
             </table>
         </div>
-        <div class="centered" id="rblock">
+        <div class="auto-margin" id="yblock">
+            <p>Y:
+                <output name="y_output" id="y_out" class="output">0</output>
+            </p>
+
+            <span class="tooltip">
+                    <input type="text" name="y_input" maxlength="5" x id="y_in" value="0"
+                           onblur="return verifyY(this);" oninput="return verifyY(this);">
+            </span>
+            <p>
+                <span>[-5 ... 3]</span>
+            </p>
+        </div>
+        <div class="auto-margin" id="rblock">
             <p>R:
                 <output name="r_output" id="r_out" class="output">_</output>
             </p>
@@ -89,26 +102,13 @@
                 </form>
             </div>
         </div>
-        <div class="centered" id="yblock">
-            <p>Y:
-                <output name="y_output" id="y_out" class="output">0</output>
-            </p>
-
-            <span class="tooltip">
-                    <input type="text" name="y_input" maxlength="5" x id="y_in" value="0"
-                           onblur="return verifyY(this);" oninput="return verifyY(this);">
-            </span>
-            <p>
-                <span>[-5 ... 3]</span>
-            </p>
-        </div>
     </div>
     <div class="graphic centered">
         <canvas id="canvas" onclick="clickCanvas(r_out.value)" width="300" height="300"></canvas>
     </div>
 </div>
-<div class="block centered">
-    <iframe style="width: 100%" name="result"></iframe>
+<div class="block auto-margin">
+    <iframe name="result"></iframe>
 </div>
 <img src="img/iwannasleep.gif" id="iwannasleep">
 </body>

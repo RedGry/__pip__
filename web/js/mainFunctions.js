@@ -76,7 +76,7 @@ function ban() {
     tmp.innerHTML = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
     document.head.append(tmp.children[0]);
     document.body.innerHTML = '<div style=\"margin-top: 60px;\"><span class=\"main-text\">先輩、私に優しくしてください。</span></div>' +
-        '<div class=\"centered\">' +
+        '<div class=\"auto-margin\">' +
         '<img src=\"./img/eyes.gif\">' +
         '</div>';
 }
