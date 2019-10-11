@@ -6,8 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-public class HitCheckServlet extends HttpServlet {
+public class CheckOrientationServlet extends HttpServlet {
+
+    private int hash = -719496019;
 
     private ServletConfig config;
 
@@ -25,19 +28,17 @@ public class HitCheckServlet extends HttpServlet {
         return config;
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("gname");
 
-        try {
-            double x = Double.parseDouble(request.getParameter("x_h").trim());
-            double y = Double.parseDouble(request.getParameter("y_h").trim());
-            double r = Double.parseDouble(request.getParameter("r_h").trim());
+        PrintWriter writer = response.getWriter();
 
-            response.getWriter().println(Point.checkArea(x, y, r));
-        } catch (Exception e) {
-            response.getWriter().println(false);
-        }
+        if (name != null && name.hashCode() == hash)
+            writer.println("Good, you rEallY like anime");
+        else
+            writer.println("Wrong");
 
-        response.getWriter().close();
+        writer.close();
     }
-
 }

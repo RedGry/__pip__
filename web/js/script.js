@@ -329,6 +329,7 @@ function markAsWrong(node) {
 
 // DONT WATCH THIS CODE
 function hiddenFunction(text) {
+    console.log('Invoke hidden function');
     if (text.includes('Good, you rEallY like anime')) {
         if (document.getElementsByTagName('audio').length !== 0)
             return;

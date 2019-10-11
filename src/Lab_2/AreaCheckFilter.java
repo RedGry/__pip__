@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class AreaCheckFilter implements Filter {
 
     private int[] xValues = {-3, -2, -1, 0, 1, 2, 3, 4, 5};
-    private double[] rValues = {0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5.5, 6, 6.5, 7.5, 8, 8.5, 9, 9.5, 10};
+    private double[] rValues = {1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5.5, 6, 6.5, 7.5, 8, 8.5, 9, 9.5, 10};
 
     public void init(FilterConfig arg0) {}
 

@@ -23,7 +23,10 @@ public class ControllerServlet extends HttpServlet {
 			else
 				request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		} else {
-			request.getServletContext().getRequestDispatcher("/check").forward(request, response);
+			if (request.getParameter("gname") != null)
+				request.getServletContext().getRequestDispatcher("/checkOrientation").forward(request, response);
+			else
+				request.getServletContext().getRequestDispatcher("/check").forward(request, response);
 		}
 	}
 
