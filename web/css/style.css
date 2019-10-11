@@ -23,9 +23,11 @@ body[areYouLoveAnime="true"] {
     background-image: url(../img/bg.gif);
     margin-bottom: 20px;
 }
+
 * {
     color: #c1b492;
 }
+
 #iwannasleep {
     position: fixed;
     bottom: -1px;
@@ -34,6 +36,7 @@ body[areYouLoveAnime="true"] {
     height: 175px;
     margin-left: -1px;
 }
+
 .auto-margin{
     margin-left: auto;
     margin-right: auto;
@@ -49,6 +52,7 @@ body[areYouLoveAnime="true"] {
     height: 305px;
     border-radius: 7%;
 }
+
 #canvas {
     padding-top: 5px;
 }

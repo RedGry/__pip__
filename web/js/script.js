@@ -1,14 +1,7 @@
-// TODO: find and fix hardcode(default sending request)
-
 var simple_img = '<img id="b357_1m6_1" src="img/g-1.jpg"><br><br><img id="pic18" class="centered" src="img/18+.png" onclick="changeAnimeImg()">';
 var not_simple_img = '<img id="b357_1m6_2" src="img/g-2.jpeg"><br><br><input type="button" id="goback" class="centered" value="w0w.. g0 b4ck" onclick="changeAnimeImg()">';
 function init() {
     createGraphic('canvas', r_out.value);
-
-    // document.getElementsByTagName('form')[0].submit();
-    //
-    // let loadValue = document.getElementById('load');
-    // loadValue.value = 0;
 }
 
 function error(message) {
@@ -104,9 +97,6 @@ function egg() {
 
     let int = setInterval(function () {
         vx = Math.cos(currentAngle) * 100 - 100;
-
-        // считаем синус текущего значения угла
-        // и умножаем на значение радиуса
         vy = Math.sin(currentAngle) * 100;
 
         createGraphic("canvas", 1);
@@ -127,10 +117,9 @@ function createGraphic(id, r) {
     }
     let canvas = document.getElementById(id), context = canvas.getContext("2d");
     canvas.is_default_graphic = is_default_graphic;
-    //очистка
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    //прямоугольник
+    // rectangle
     context.beginPath();
     context.rect(20, 150, 130, 130);
     context.closePath();
@@ -139,7 +128,7 @@ function createGraphic(id, r) {
     context.fill();
     context.stroke();
 
-    // сектор
+    // sector
     context.beginPath();
     context.moveTo(150, 150);
     context.arc(150, 150, 65, -Math.PI / 2, 0, false);
@@ -149,7 +138,7 @@ function createGraphic(id, r) {
     context.fill();
     context.stroke();
 
-    //треугольник
+    // triangle
     context.beginPath();
     context.moveTo(150, 150);
     context.lineTo(20, 150);
@@ -161,7 +150,7 @@ function createGraphic(id, r) {
     context.fill();
     context.stroke();
 
-    //отрисовка осей
+    // axes
     context.beginPath();
     context.font = "10px Verdana";
     context.strokeStyle = "black";
@@ -181,7 +170,7 @@ function createGraphic(id, r) {
     context.lineTo(285, 155);
     context.fillText("X", 290, 130);
 
-    // деления Y
+    // Y parts
     context.moveTo(145, 20);
     context.lineTo(155, 20);
     context.fillText(is_default_graphic ? 'R' : String(r), 160, 20);
@@ -194,7 +183,8 @@ function createGraphic(id, r) {
     context.moveTo(145, 280);
     context.lineTo(155, 280);
     context.fillText(is_default_graphic ? '-R' : String(-r), 160, 280);
-    // деления X
+
+    // X parts
     context.moveTo(20, 145);
     context.lineTo(20, 155);
     context.fillText(is_default_graphic ? '-R' : String(-r), 15, 140);
@@ -291,7 +281,6 @@ function doYouLikeAnImE() {
                                     simple_img +
                                 '</div>';
     }
-    // let audio = document.createElement('audio');
 }
 
 function checkOrientation() {

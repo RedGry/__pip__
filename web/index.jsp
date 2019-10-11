@@ -6,7 +6,7 @@
     <title>Lab2-Web</title>
     <%--    <style> <%@include file='css/main.css' %> </style>--%>
     <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript"> <%@include file='./js/mainFunctions.js' %> </script>
+    <script type="text/javascript"> <%@include file='js/script.js' %> </script>
 </head>
 <body areYouLoveAnime="true" onload="init()">
 <jsp:useBean id="pointsBean" class="Lab_2.PointsTableBean" scope="session"/>
