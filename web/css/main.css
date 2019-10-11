@@ -26,6 +26,7 @@ input {
 	padding: 3px 5px;
 	margin: 1px;
 }
+
 input:focus {
 	border-color: #fc0;
 }
@@ -108,6 +109,7 @@ h1 { color: #000080; font-weight: normal; }
 	text-indent: 0;
 	background: #FFFACD;
 }
+
 .tooltip > span { /* стиль появляющейся подсказки */
 	position: absolute;
 	left: -20em; /* = max-width */
@@ -129,38 +131,30 @@ h1 { color: #000080; font-weight: normal; }
 
 .tooltip > span {
 	left: 48%;
-	bottom: 0%;
+	bottom: 0;
 }
 
-.tooltip.left > span { /* начинается от левого края */
+.tooltip.left > span {
 	left: 0;
 	right: -20em;
 	margin: 0 0 .4em;
 }
-.tooltip.right > span { /* начинается от правого края */
+.tooltip.right > span {
 	left: -20em;
 	right: 0;
 	margin: 0 0 .4em auto;
 }
-/*.tooltip:after { !* треугольничек под подсказкой; тут тоже везде .4em *!
-	content: "";
-	position: absolute;
-	top: -.01em;
-	left: 100%;
-	visibility: hidden;
-	margin: 0 0 0 -.4em;
-	border: .4em solid;
-	border-color: rgb(200,200,200) transparent transparent transparent;
-	cursor: auto;
-}*/
+
 .tooltip.left:after {
 	left: 1em;
 }
+
 .tooltip.right:after {
 	left: auto;
-	right: .6em; /* 1em - .4em */
+	right: .6em;
 }
-.tooltip:before { /* поле между текстом, наведя или нажав на который появится пояснение, и подсказкой нужно чтобы, если перевести курсор мышки на подсказку, та не исчезла; тут тоже везде .4em */
+
+.tooltip:before {
 	content: "";
 	position: absolute;
 	top: -.4em;
@@ -169,6 +163,7 @@ h1 { color: #000080; font-weight: normal; }
 	height: .4em;
 	visibility: hidden;
 }
+
 .tooltip:hover > span,
 .tooltip:hover:before,
 .tooltip:hover:after,
@@ -178,6 +173,7 @@ h1 { color: #000080; font-weight: normal; }
 	visibility: visible;
 	transition: 0s .3s;
 }
-.tooltip:focus { /* убрать рамку в Хроме */
+
+.tooltip:focus {
 	outline: none;
 }

@@ -21,10 +21,13 @@ a {
 }
 body[areYouLoveAnime="true"] {
     background-image: url(../img/bg.gif);
+    margin-bottom: 20px;
 }
+
 * {
     color: #c1b492;
 }
+
 #iwannasleep {
     position: fixed;
     bottom: -1px;
@@ -33,6 +36,7 @@ body[areYouLoveAnime="true"] {
     height: 175px;
     margin-left: -1px;
 }
+
 .auto-margin{
     margin-left: auto;
     margin-right: auto;
@@ -48,11 +52,12 @@ body[areYouLoveAnime="true"] {
     height: 305px;
     border-radius: 7%;
 }
+
 #canvas {
     padding-top: 5px;
 }
 
-#xblock, #yblock, #rblock {
+#xblock, #yblock, #rblock, #error {
     width: min-content;
 }
 
@@ -74,4 +79,39 @@ body[areYouLoveAnime="true"] {
 iframe[name="result"] {
     width: 100%;
     background-image: url('../img/bg_3.gif');
+}
+
+#head {
+    margin-top: 4%;
+}
+
+#b357_1m6_1 {
+    width: 328px;
+    height: 512px;
+}
+
+#b357_1m6_2 {
+    width: 307px;
+    height: 396px;
+}
+
+#pic18 {
+    width: 3%;
+}
+
+#anime-form {
+    padding-left: 10%;
+}
+
+input {
+    text-align: center;
+}
+
+#goback{
+    color: #d2738a;
+}
+
+#error {
+    color: red;
+    width: 20px;
 }
