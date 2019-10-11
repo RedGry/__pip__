@@ -107,11 +107,12 @@ input {
     text-align: center;
 }
 
-#goback{
-    color: #d2738a;
-}
-
 #error {
     color: red;
     width: 20px;
+}
+
+input {
+    background-color: rgb(204, 151, 145);
+    color: black;
 }

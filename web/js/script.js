@@ -1,5 +1,5 @@
 var simple_img = '<img id="b357_1m6_1" src="img/g-1.jpg"><br><br><img id="pic18" class="centered" src="img/18+.png" onclick="changeAnimeImg()">';
-var not_simple_img = '<img id="b357_1m6_2" src="img/g-2.jpeg"><br><br><input type="button" id="goback" class="centered" value="w0w.. g0 b4ck" onclick="changeAnimeImg()">';
+var not_simple_img = '<img id="b357_1m6_2" src="img/g-2.jpeg"><br><br><input type="button" class="centered" value="w0w.. g0 b4ck" onclick="changeAnimeImg()">';
 
 let prev_y = 0;
 let res = 0;
@@ -22,7 +22,7 @@ function error(message) {
 function clickCanvas(R) {
     console.log("Click on canvas");
     let canvas = document.getElementById("canvas");
-
+    console.log('is default graphic: ' + is_default_graphic);
     if (is_default_graphic) {
         console.log('error: R is not set');
         createGraphic('canvas', 0);
@@ -47,6 +47,7 @@ function clickCanvas(R) {
 }
 
 function markPointFromServer(x, y, r) {
+    console.log('try to mark point from server with x:' + x + ', y:' + y + ', r:' + r);
     if (!checkAllParameters(x, y, r)) {
         error('Wrong parameters');
         return false;
@@ -353,7 +354,7 @@ function changeAnimeImg() {
 }
 
 function checkAllParameters(x, y, r) {
-    return isXcorrect(x) && isYcorrect(y) && isRcorrect(r);
+    return isNumber(x) && isNumber(y) && isRcorrect(r);
 }
 
 // function onSubmit(x,y,r) {
