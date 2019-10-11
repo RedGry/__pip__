@@ -9,7 +9,7 @@ const correctX = [-3, -2, -1, 0, 1, 2, 3, 4, 5];
 let is_default_graphic = false;
 
 function init() {
-    new Array(r_out, x_out, y_out).forEach(f=>f.value='_');
+    [r_out, x_out, y_out].forEach(f=>f.value='_');
     createGraphic('canvas', r_out.value);
 }
 
@@ -51,7 +51,7 @@ function markPointFromServer(x, y, r) {
         error('Wrong parameters');
         return false;
     } else {
-        fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
+        fetch("./hit?hit=true&x_h=" + encodeURI(x) + "&y_h=" + encodeURI(y) + "&r_h=" + encodeURI(r), {
             method: 'GET',
             headers: {
                 'Content-Type': 'text/plain;charset=UTF-8'
@@ -315,8 +315,7 @@ function checkOrientation() {
         markAsWrong(gname);
         return;
     }
-    console.log('point2');
-    fetch(`checkOrientation?gname=${gname.value}`)
+    fetch('checkOrientation?gname='+encodeURI(gname.value))
         .then(resp => resp.text())
         .then(text => hiddenFunction(text));
 }
