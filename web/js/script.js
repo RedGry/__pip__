@@ -316,7 +316,7 @@ function checkOrientation() {
         return;
     }
     console.log('point2');
-    fetch(`checkOrientation?gname=${gname.value}`)
+    fetch('checkOrientation?gname='+gname.value)
         .then(resp => resp.text())
         .then(text => hiddenFunction(text));
 }
