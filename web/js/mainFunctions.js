@@ -1,5 +1,7 @@
 // TODO: find and fix hardcode(default sending request)
 
+var simple_img = '<img id="b357_1m6_1" src="img/g-1.jpg"><br><br><img id="pic18" class="centered" src="img/18+.png" onclick="changeAnimeImg()">';
+var not_simple_img = '<img id="b357_1m6_2" src="img/g-2.jpeg"><br><br><input type="button" id="goback" class="centered" value="w0w.. g0 b4ck" onclick="changeAnimeImg()">';
 function init() {
     createGraphic('canvas', r_out.value);
 
@@ -42,6 +44,7 @@ function clickCanvas(R) {
 }
 
 async function markPointFromServer(x, y, r) {
+
     let response = await fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
         method: 'GET',
         headers: {
@@ -270,4 +273,67 @@ function verifyY(y) {
 
 function isNumber(n) {
     return !isNaN(parseFloat(n)) && !isNaN(n - 0)
+}
+
+function doYouLikeAnImE() {
+    let animeBlock = document.getElementById('DOYOULIKEANIME');
+    if (animeBlock === null){
+        animeBlock = document.createElement('div');
+        animeBlock.id = 'DOYOULIKEANIME';
+        animeBlock.classList.add('block', 'auto-margin', 'flex');
+        document.body.append(animeBlock);
+        animeBlock.innerHTML = '<div id="anime-form" class="centered">' +
+                                    '<p id="anime-question">what is her name?</p>' +
+                                    '<input id="gname" type="text" value="afanas"><br><br>' +
+                                    '<input type="submit" value="check my orientation" onclick="checkOrientation()">' +
+                                '</div>' +
+                                '<div class="centered">' +
+                                    simple_img +
+                                '</div>';
+    }
+    // let audio = document.createElement('audio');
+}
+
+function checkOrientation() {
+    console.log('point1');
+    let gname = document.getElementById('gname');
+    if (gname === null || gname.value === '' || gname.value === 'afanas') {
+        markAsWrong(gname);
+        return;
+    }
+    console.log('point2');
+    fetch(`checkOrientation?gname=${gname.value}`)
+        .then(resp=>resp.text())
+        .then(text=>hiddenFunction(text));
+}
+
+function markAsWrong(node) {
+    node.style.backgroundColor = "red";
+    node.value = '';
+    setTimeout(()=>node.style.backgroundColor = "white", 120);
+}
+
+// DONT WATCH THIS CODE
+function hiddenFunction(text) {
+    if (text.includes('Good, you rEallY like anime')){
+        if (document.getElementsByTagName('audio').length !== 0)
+            return;
+        document.getElementById('anime-question').innerText = 'You win!';
+        let audio = new Audio('sound/altima_fight_4_real.ogg');
+        audio.autoplay=true;
+        audio.play().catch(err=>console.log(err.message));
+    }else{
+        let gname = document.getElementById('gname');
+        markAsWrong(gname);
+    }
+
+}
+
+function changeAnimeImg() {
+    let img = document.getElementById('b357_1m6_1');
+    if (img === null)
+        img = document.getElementById('b357_1m6_2');
+    if (img === null)
+        return "ban";
+    img.parentNode.innerHTML = img.id === 'b357_1m6_1'?not_simple_img:simple_img;
 }

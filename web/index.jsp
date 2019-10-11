@@ -10,7 +10,7 @@
 </head>
 <body areYouLoveAnime="true" onload="init()">
 <jsp:useBean id="pointsBean" class="Lab_2.PointsTableBean" scope="session"/>
-<div class="block auto-margin">
+<div class="block auto-margin" id="head">
     Agababyan_Karlen & Gosha_Sawin<br>
     Group: P3202; Option: 202000/813992<br>
     <a href="//github.com/SunnyCapt/Lab2-Web">Source of AK</a>/<a href="//github.com/DeltaThreeEight/Lab2-Web">Source of
@@ -110,5 +110,5 @@
 <div class="block auto-margin">
     <iframe name="result" src="check?x_h=1&r_h=2&y_h=1&load=1"></iframe>
 </div>
-<img src="img/iwannasleep.gif" id="iwannasleep">
+    <img src="img/iwannasleep.gif" id="iwannasleep" onclick="doYouLikeAnImE()">
 </body>

@@ -21,6 +21,7 @@ a {
 }
 body[areYouLoveAnime="true"] {
     background-image: url(../img/bg.gif);
+    margin-bottom: 20px;
 }
 * {
     color: #c1b492;
@@ -74,4 +75,34 @@ body[areYouLoveAnime="true"] {
 iframe[name="result"] {
     width: 100%;
     background-image: url('../img/bg_3.gif');
+}
+
+#head {
+    margin-top: 4%;
+}
+
+#b357_1m6_1 {
+    width: 328px;
+    height: 512px;
+}
+
+#b357_1m6_2 {
+    width: 307px;
+    height: 396px;
+}
+
+#pic18 {
+    width: 3%;
+}
+
+#anime-form {
+    padding-left: 10%;
+}
+
+input {
+    text-align: center;
+}
+
+#goback{
+    color: #d2738a;
 }
