@@ -2,15 +2,10 @@ package Lab_2;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class AreaCheckServlet extends HttpServlet {
 
@@ -36,8 +31,6 @@ public class AreaCheckServlet extends HttpServlet {
 
         bean = (PointsTableBean) request.getSession().getAttribute("pointsBean");
 
-        String reset = request.getParameter("reset");
-
         boolean load;
 
         try {
@@ -62,56 +55,9 @@ public class AreaCheckServlet extends HttpServlet {
         }
 
         response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
-        StringBuilder htmlResponse = new StringBuilder();
+        request.getServletContext().getRequestDispatcher("/table.jsp").include(request, response);
 
-        htmlResponse.append("<!DOCTYPE html>\n" +
-                "<html>\n" +
-                "<head>\n" +
-                "\t<title>Результат проверки</title>\n" +
-                "  \t<meta charset=\"utf-8\">\n" +
-                "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n" +
-                "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/handler.css\">\n" +
-                "</head>\n" +
-                "<body>");
-        if (bean.getPoints().size() > 0)
-            formTable(htmlResponse, reset);
-
-        htmlResponse.append("</body> </html>");
-        out.println(htmlResponse);
-
-        out.close();
-
-    }
-
-    @SuppressWarnings("unchecked")
-    private void formTable(StringBuilder htmlResponse, String reset) {
-        htmlResponse.append("<table class=\"results block centered\">");
-        htmlResponse.append("<tr> <th>N</th> <th>X</th> <th>Y</th> <th>R</th> <th><b>Результат</b></th> <th>Показать </th> </tr>");
-
-        List<Point> list = bean.getPoints();
-
-        while (list.size() > 10) {
-            list.remove(0);
-        }
-
-        if (reset != null && reset.equals("true"))
-            while (list.size() > 0)
-                list.remove(0);
-
-        List<Point> reversed = new ArrayList<>(list);
-        Collections.reverse(reversed);
-
-        for (Point point : reversed) {
-            if (point != null) {
-                htmlResponse.append(point);
-            } else {
-                htmlResponse.append("<tr> <td colspan='6'><b>Неверные аргументы</b></td> </tr>");
-            }
-        }
-
-        htmlResponse.append("</table>");
     }
 
 }

@@ -22,7 +22,7 @@ public class PointsTableBean implements Serializable {
         points.add(point);
     }
 
-    List getPoints() {
+    public List getPoints() {
         return points;
     }
 }
