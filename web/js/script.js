@@ -1,28 +1,38 @@
 var simple_img = '<img id="b357_1m6_1" src="img/g-1.jpg"><br><br><img id="pic18" class="centered" src="img/18+.png" onclick="changeAnimeImg()">';
 var not_simple_img = '<img id="b357_1m6_2" src="img/g-2.jpeg"><br><br><input type="button" id="goback" class="centered" value="w0w.. g0 b4ck" onclick="changeAnimeImg()">';
+
+let prev_y = 0;
+let res = 0;
+let count = 0;
+
+const correctX = [-3, -2, -1, 0, 1, 2, 3, 4, 5];
+let is_default_graphic = false;
+
 function init() {
+    new Array(r_out, x_out, y_out).forEach(f=>f.value='_');
     createGraphic('canvas', r_out.value);
 }
 
 function error(message) {
-    alert(message);
+    let errorField = document.getElementById('error');
+    errorField.innerText = message;
+    setTimeout(()=>errorField.innerText='', 2000);
 }
 
 function clickCanvas(R) {
     console.log("Click on canvas");
     let canvas = document.getElementById("canvas");
 
-    if (canvas.is_default_graphic){
+    if (is_default_graphic) {
         console.log('error: R is not set');
         createGraphic('canvas', 0);
         let canvas = document.getElementById("canvas"), context = canvas.getContext("2d");
         context.strokeStyle = "#000000";
         context.fillStyle = "#ff0014";
         context.font = '20px Arial';
-        context.fillText(  'You have to set ', 20, 50);
-        context.fillText(  'R parameter', 20, 70);
+        context.fillText('You have to set ', 20, 50);
+        context.fillText('R parameter', 20, 70);
         return;
-
     }
 
     let br = canvas.getBoundingClientRect();
@@ -36,16 +46,21 @@ function clickCanvas(R) {
     markPointFromServer((x - 150) / 130 * R, (-y + 150) / 130 * R, R);
 }
 
-async function markPointFromServer(x, y, r) {
-
-    let response = await fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'text/plain;charset=UTF-8'
-        }
-    });
-    let hit = await response.text();
-    markPoint(x, y, r, hit);
+function markPointFromServer(x, y, r) {
+    if (!checkAllParameters(x, y, r)) {
+        error('Wrong parameters');
+        return false;
+    } else {
+        fetch("./hit?hit=true&x_h=" + x + "&y_h=" + y + "&r_h=" + r, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'text/plain;charset=UTF-8'
+            }
+        })
+            .then(response=>response.text())
+            .then(hit=>markPoint(x, y, r, hit));
+        return true;
+    }
 }
 
 function markPoint(x, y, r, hit) {
@@ -110,13 +125,13 @@ function egg() {
 }
 
 function createGraphic(id, r) {
-    let is_default_graphic = false;
     if (r === 0 || r === '_') {
         is_default_graphic = true;
         r = 1;
+    }else{
+        is_default_graphic = false;
     }
     let canvas = document.getElementById(id), context = canvas.getContext("2d");
-    canvas.is_default_graphic = is_default_graphic;
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // rectangle
@@ -204,7 +219,6 @@ function createGraphic(id, r) {
     context.stroke();
 }
 
-let prev_y = 0;
 
 function setRadius(r) {
     let checked = document.getElementsByClassName('rb');
@@ -218,12 +232,23 @@ function setRadius(r) {
     console.log('setting radius: ' + r);
 
     r_h_id.value = r;
-    r_out.value = r > 0?r:'_';
+    r_out.value = r > 0 ? r : '_';
     createGraphic('canvas', r);
 }
 
-let res = 0;
-let count = 0;
+
+function isXcorrect(x) {
+    return isNumber(x) && correctX.includes(Number(x));
+}
+
+function isYcorrect(y) {
+    let yFloat = parseFloat(y.replace(/,/, '.'));
+    return isNumber(y.replace(/,/, '.')) && yFloat > -5 && yFloat < 3;
+}
+
+function isRcorrect(r) {
+    return r >= 1 && r <= 100;
+}
 
 function setX(x) {
     if (count < 2) {
@@ -243,8 +268,8 @@ function setX(x) {
 function verifyY(y) {
     let y1 = parseFloat(y.value.replace(/,/, '.'));
     let elem = document.getElementById("y_in");
-    if (y.value != '' && y.value != '-') {
-        if (!isNumber(y.value.replace(/,/, '.')) || y1 <= -5 || y1 >= 3) {
+    if (y.value !== '' && y.value !== '-') {
+        if (!isYcorrect(y.value)) {
             y.focus();
             elem.style.backgroundColor = "red";
             y.value = prev_y;
@@ -267,19 +292,19 @@ function isNumber(n) {
 
 function doYouLikeAnImE() {
     let animeBlock = document.getElementById('DOYOULIKEANIME');
-    if (animeBlock === null){
+    if (animeBlock === null) {
         animeBlock = document.createElement('div');
         animeBlock.id = 'DOYOULIKEANIME';
         animeBlock.classList.add('block', 'auto-margin', 'flex');
         document.body.append(animeBlock);
         animeBlock.innerHTML = '<div id="anime-form" class="centered">' +
-                                    '<p id="anime-question">what is her name?</p>' +
-                                    '<input id="gname" type="text" value="afanas"><br><br>' +
-                                    '<input type="submit" value="check my orientation" onclick="checkOrientation()">' +
-                                '</div>' +
-                                '<div class="centered">' +
-                                    simple_img +
-                                '</div>';
+            '<p id="anime-question">what is her name?</p>' +
+            '<input id="gname" type="text" value="afanas"><br><br>' +
+            '<input type="submit" value="check my orientation" onclick="checkOrientation()">' +
+            '</div>' +
+            '<div class="centered">' +
+            simple_img +
+            '</div>';
     }
 }
 
@@ -292,26 +317,26 @@ function checkOrientation() {
     }
     console.log('point2');
     fetch(`checkOrientation?gname=${gname.value}`)
-        .then(resp=>resp.text())
-        .then(text=>hiddenFunction(text));
+        .then(resp => resp.text())
+        .then(text => hiddenFunction(text));
 }
 
 function markAsWrong(node) {
     node.style.backgroundColor = "red";
     node.value = '';
-    setTimeout(()=>node.style.backgroundColor = "white", 120);
+    setTimeout(() => node.style.backgroundColor = "white", 120);
 }
 
 // DONT WATCH THIS CODE
 function hiddenFunction(text) {
-    if (text.includes('Good, you rEallY like anime')){
+    if (text.includes('Good, you rEallY like anime')) {
         if (document.getElementsByTagName('audio').length !== 0)
             return;
         document.getElementById('anime-question').innerText = 'You win!';
         let audio = new Audio('sound/altima_fight_4_real.ogg');
-        audio.autoplay=true;
-        audio.play().catch(err=>console.log(err.message));
-    }else{
+        audio.autoplay = true;
+        audio.play().catch(err => console.log(err.message));
+    } else {
         let gname = document.getElementById('gname');
         markAsWrong(gname);
     }
@@ -324,5 +349,20 @@ function changeAnimeImg() {
         img = document.getElementById('b357_1m6_2');
     if (img === null)
         return "ban";
-    img.parentNode.innerHTML = img.id === 'b357_1m6_1'?not_simple_img:simple_img;
+    img.parentNode.innerHTML = img.id === 'b357_1m6_1' ? not_simple_img : simple_img;
 }
+
+function checkAllParameters(x, y, r) {
+    return isXcorrect(x) && isYcorrect(y) && isRcorrect(r);
+}
+
+// function onSubmit(x,y,r) {
+//     console.log(x,y,r);
+//     if (!checkAllParameters(x, y, r)) {
+//         error('Wrong parameters');
+//         console.log('ban');
+//         return false;
+//     }
+//     console.log('neban');
+//     return true;
+// }
