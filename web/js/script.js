@@ -105,7 +105,7 @@ function egg() {
 
     img.src = "./img/angryMushroom.jpg";
 
-    context.drawImage(img, 25, 97);
+    context.drawImage(img, 25, 97, 50, 50);
 
     let currentAngle = 0.1;
     let vx = 0;
@@ -116,7 +116,7 @@ function egg() {
         vy = Math.sin(currentAngle) * 100;
 
         createGraphic("canvas", 1);
-        context.drawImage(img, 25 - vx, 97 - vy);
+        context.drawImage(img, 25 - vx, 97 - vy, 50, 50);
         currentAngle += 0.05;
         if (currentAngle > 3.1) {
             clearInterval(int);

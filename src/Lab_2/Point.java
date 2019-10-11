@@ -17,6 +17,26 @@ public class Point implements Serializable {
         hit = checkArea(x, y, R);
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getR() {
+        return R;
+    }
+
+    public boolean isHit() {
+        return hit;
+    }
+
+    public int getN() {
+        return n;
+    }
+
     static boolean checkArea(double x, double y, double r){
 
         boolean circle = ((Math.pow(x, 2) + Math.pow(y, 2) <= (Math.pow(r / 2, 2))) && y >= 0 && x >= 0);
@@ -24,17 +44,5 @@ public class Point implements Serializable {
         boolean triangle = (y <= (x + r) && y >= 0 && x <= 0 && x >= -r);
 
         return square || triangle || circle;
-    }
-
-    @Override
-    public String toString() {
-        String res = hit ? "Попадание ＼(￣▽￣)／" : "Промах (╯︵╰,)";
-        return String.format("<tr> <td>%s</td>" +
-                        " <td>%s</td>" +
-                        " <td>%s</td>" +
-                        " <td>%s</td>" +
-                        " <td><b>%s</b></td>" +
-                        "  <td><button onclick='parent.markPoint(%s, %s, %s, %s)'>+</button></td></tr>",
-                n, x, y, R, res, x, y, R, hit);
     }
 }

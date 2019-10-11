@@ -20,8 +20,6 @@
 <table class="results block centered">
     <tr> <th>N</th> <th>X</th> <th>Y</th> <th>R</th> <th><b>Результат</b></th> <th>Показать </th> </tr>
     <%
-        StringBuilder answer1 = new StringBuilder();
-
     List<Point> list = pointsBean.getPoints();
 
         while (list.size() > 10) {
@@ -32,16 +30,18 @@
         Collections.reverse(reversed);
 
         for (Point point : reversed) {
-            if (point != null) {
-                answer1.append(point);
-            } else {
-                answer1.append("<tr> <td colspan='6'><b>Неверные аргументы</b></td> </tr>");
-            }
-        }
+        %>
+    <tr>
+        <td><%=point.getN() %></td>
+        <td><%=point.getX() %></td>
+        <td><%=point.getY() %></td>
+        <td><%=point.getR()%></td>
+        <td><%=point.isHit() ? "Попадание ＼(￣▽￣)／" : "Промах (╯︵╰,)" %></td>
+        <td><button onclick='parent.markPoint(<%=point.getX() %>, <%=point.getY() %>, <%=point.getR() %>, <%=point.isHit() ? "lime" : "red" %>)'>+</button></td>
+    </tr>
+    <%}%>
 
-        out.println(answer1);
 
-%>
 </table>
 </body>
 </html>
