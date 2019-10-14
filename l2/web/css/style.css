@@ -1,0 +1,118 @@
+.block {
+    width: 70%;
+    text-align: center;
+    box-shadow: black 0 5px 10px;
+    background-color: black;
+    height: auto;
+    letter-spacing: 6px;
+    font-size: 16px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.main-text {
+    font-size: 20px;
+    font-family: Times, "Times New Roman", serif;
+    font-weight: normal;
+    clear: both;
+}
+a {
+    text-decoration: none;
+    color: #d2738a;
+}
+body[areYouLoveAnime="true"] {
+    background-image: url(../img/bg.gif);
+    margin-bottom: 20px;
+}
+
+* {
+    color: #c1b492;
+}
+
+#iwannasleep {
+    position: fixed;
+    bottom: -1px;
+    left: -1px;
+    width: 242px;
+    height: 175px;
+    margin-left: -1px;
+}
+
+.auto-margin{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered{
+    margin: auto;
+}
+
+.graphic {
+    background-image: url("../img/bg_4.gif");
+    width: 305px;
+    height: 305px;
+    border-radius: 7%;
+}
+
+#canvas {
+    padding-top: 5px;
+}
+
+#xblock, #yblock, #rblock, #error {
+    width: min-content;
+}
+
+#xblock *, #yblock *, #rblock * {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.no-letter-spacing {
+    letter-spacing: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+iframe[name="result"] {
+    width: 100%;
+    background-image: url('../img/bg_3.gif');
+}
+
+#head {
+    margin-top: 4%;
+}
+
+#b357_1m6_1 {
+    width: 328px;
+    height: 512px;
+}
+
+#b357_1m6_2 {
+    width: 307px;
+    height: 396px;
+}
+
+#pic18 {
+    width: 3%;
+}
+
+#anime-form {
+    padding-left: 10%;
+}
+
+input {
+    text-align: center;
+}
+
+#error {
+    color: red;
+    width: 20px;
+}
+
+input {
+    background-color: rgb(204, 151, 145);
+    color: black;
+}

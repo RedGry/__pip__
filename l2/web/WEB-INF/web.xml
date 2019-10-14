@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>Lab_2.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/control</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckOrientationServlet</servlet-name>
+        <servlet-class>Lab_2.CheckOrientationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckOrientationServlet</servlet-name>
+        <url-pattern>/checkOrientation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HitCheckServlet</servlet-name>
+        <servlet-class>Lab_2.HitCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HitCheckServlet</servlet-name>
+        <url-pattern>/hit</url-pattern>
+    </servlet-mapping>
+    
+    <filter>
+        <filter-name>filter</filter-name>
+        <filter-class>Lab_2.AreaCheckFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filter</filter-name>
+        <url-pattern>/check</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>AreaCheckServlet</servlet-name>
+        <servlet-class>Lab_2.AreaCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AreaCheckServlet</servlet-name>
+        <url-pattern>/check</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>control</welcome-file>
+    </welcome-file-list>
+</web-app>

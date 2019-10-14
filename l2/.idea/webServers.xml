@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b32b6917-8a68-4d3a-ace6-22e64f2cd6af" name="helios" url="http://helios.cs.ifmo.ru">
+        <fileTransfer host="helios.cs.ifmo.ru" port="2222" rootFolder="/home/s265082/web/lab2/autodeploy" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
