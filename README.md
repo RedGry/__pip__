@@ -71,4 +71,6 @@
     
     https://webdraftt.com/tutorial/component-lifecycle
     
+    https://metanit.com/web/angular2/2.4.php
+    
 1. Angular: клиент-серверное взаимодействие, создание, отправка и валидация данных форм.
