@@ -54,12 +54,21 @@
     
     Для разработки нужно настроить сборочное окружение (на базе node.js и npm). Приложения состоят из модулей (NgModules). Модули обеспечивают контекст для компонентов (components). Из компонентов строятся представления (views). Компоненты взаимодействуют с сервисами (services) с помощью DI.
 1. Angular: модули, компоненты, сервисы и DI.
-    webdraftt.com/tutorial/angular-modules
-    webdraftt.com/tutorial/angular-components
-    webdraftt.com/tutorial/angular-services
-    webdraftt.com/tutorial/dependency-injection
-    habr.com/ru/post/434380/
+
+    https://webdraftt.com/tutorial/angular-modules
+    
+    https://webdraftt.com/tutorial/angular-components
+    
+    https://webdraftt.com/tutorial/angular-services
+    
+    https://webdraftt.com/tutorial/dependency-injection
+    
+    https://habr.com/ru/post/434380/
+    
 1. Angular: шаблоны страниц, жизненный цикл компонентов, подключение CSS.
-    webdraftt.com/tutorial/angular-templates
-    webdraftt.com/tutorial/component-lifecycle
+
+    https://webdraftt.com/tutorial/angular-templates
+    
+    https://webdraftt.com/tutorial/component-lifecycle
+    
 1. Angular: клиент-серверное взаимодействие, создание, отправка и валидация данных форм.
