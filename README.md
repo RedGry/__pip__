@@ -74,3 +74,13 @@
     https://metanit.com/web/angular2/2.4.php
     
 1. Angular: клиент-серверное взаимодействие, создание, отправка и валидация данных форм.
+
+    https://webdraftt.com/tutorial/angular-http-client
+    
+    https://webdraftt.com/tutorial/angular-http-interceptor
+    
+    https://webdraftt.com/tutorial/angular-forms
+    
+    https://webdraftt.com/tutorial/angular-reactive-forms
+    
+    https://webdraftt.com/tutorial/forms-validation
