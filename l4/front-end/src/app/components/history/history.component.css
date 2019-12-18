@@ -1,0 +1,25 @@
+#point-history-card {
+  width: 80%;
+  letter-spacing: 3px;
+  padding: 10px;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+#point-history-card th, #point-history-card td{
+  text-align: center;
+  width: 25%
+}
+
+#point-history-card tr{
+  height: 32px;
+}
+
+button{
+  height: 30px;
+  width: 120px;
+}
+
+.last-cell {
+  padding-right: 10px;
+}
