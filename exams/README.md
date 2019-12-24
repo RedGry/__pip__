@@ -3,6 +3,6 @@
 <pre>
 Array
 (
-    [рубежка#1] => <a href="./first-test.md">./first-test</a>
+    [рубежка#1] => <a href="./first-test.html">./first-test</a>
 )
 </pre>
